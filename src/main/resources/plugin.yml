@@ -1,0 +1,6 @@
+name: YaRPG
+version: ${project.version}
+main: net.prosavage.yarpg.YaRPG
+api-version: 1.15
+authors: [KingAlterIV]
+description: Yet another basic, free and customizable RPG plugin that was made because there weren't any basic free ones out there.
