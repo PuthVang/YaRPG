@@ -10,13 +10,14 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public abstract class AbstractItemBuilder {
 
-    private final Color color = new Color();
+    Color color = new Color();
     private final INumber iNumber = new INumber();
 
     public ItemStack itemStack;

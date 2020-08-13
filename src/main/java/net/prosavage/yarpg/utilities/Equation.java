@@ -5,17 +5,18 @@ import java.math.BigDecimal;
 
 public class Equation {
 
-    public double parseDouble(String string){
-        BigDecimal result;
+    BigDecimal result;
+
+    public Equation(String string){
         Expression expression = new Expression(string).setPrecision(10);
         result = expression.eval();
+    }
+
+    public double getDouble(){
         return result.doubleValue();
     }
 
-    public int parseInteger(String string){
-        BigDecimal result;
-        Expression expression = new Expression(string).setPrecision(10);
-        result = expression.eval();
+    public int getInteger(){
         return result.intValue();
     }
 

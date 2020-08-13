@@ -1,7 +1,7 @@
 package net.prosavage.yarpg.utilities;
 
-import net.prosavage.yarpg.YaRPG;
 import org.bukkit.ChatColor;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -10,9 +10,7 @@ public class Color {
     Pattern pattern = Pattern.compile("<(#[0-9a-fA-F]{6})>");
 
     public String ify(String s){
-         if (YaRPG.getInstance().getVersionDouble() >= 1.16) {
-            s = convertHexString(s);
-        }
+        s = convertHexString(s);
         return ChatColor.translateAlternateColorCodes('&', s);
     }
 

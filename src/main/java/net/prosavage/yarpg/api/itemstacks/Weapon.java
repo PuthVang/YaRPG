@@ -1,9 +1,10 @@
 package net.prosavage.yarpg.api.itemstacks;
 
 import net.prosavage.yarpg.YaRPG;
-import net.prosavage.yarpg.api.itemstacks.utilities.AbstractItemUtil;
 import net.prosavage.yarpg.api.files.WeaponFiles;
+import net.prosavage.yarpg.api.itemstacks.utilities.AbstractItemUtil;
 import net.prosavage.yarpg.utilities.Color;
+import net.prosavage.yarpg.utilities.DefaultUtilities;
 import net.prosavage.yarpg.utilities.INumber;
 import net.prosavage.yarpg.utilities.keys.YNamespacedKeys;
 import net.prosavage.yarpg.utilities.tagtypes.BooleanTagType;
@@ -15,17 +16,18 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.NotNull;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
 public class Weapon extends AbstractItemUtil {
 
-    INumber iNumber = new INumber();
     Color color = new Color();
+    INumber iNumber = new INumber();
 
-    private final boolean isMelee = false;
-    private final boolean isRanged = false;
+    private boolean isMelee = false;
+    private boolean isRanged = false;
 
     public Weapon(String stringMaterial) {
         super(stringMaterial);
@@ -80,11 +82,11 @@ public class Weapon extends AbstractItemUtil {
     }
 
     public String getName() {
-        return this.persistentDataContainer.getOrDefault(YNamespacedKeys.ITEM_NAME, PersistentDataType.STRING, itemStack.getType().toString());
+        return this.persistentDataContainer.getOrDefault(YNamespacedKeys.ITEM_NAME, PersistentDataType.STRING, DefaultUtilities.getDefaultName(this.itemStack));
     }
 
     public String getMaterial(){
-        return this.persistentDataContainer.getOrDefault(YNamespacedKeys.ITEM_MATERIAL, PersistentDataType.STRING, "Wooden");
+        return this.persistentDataContainer.getOrDefault(YNamespacedKeys.ITEM_MATERIAL, PersistentDataType.STRING, DefaultUtilities.getDefaultMaterial(this.itemStack));
     }
 
     public String getRarity(){
@@ -259,21 +261,25 @@ public class Weapon extends AbstractItemUtil {
 
     public Weapon setMeleeMinimumDamage(double meleeMinimumDamage){
         this.persistentDataContainer.set(YNamespacedKeys.ITEM_MELEE_MINIMUM_DAMAGE, PersistentDataType.DOUBLE, meleeMinimumDamage);
+        this.isMelee = true;
         return this;
     }
 
     public Weapon setMeleeMaximumDamage(double meleeMaximumDamage){
         this.persistentDataContainer.set(YNamespacedKeys.ITEM_MELEE_MAXIMUM_DAMAGE, PersistentDataType.DOUBLE, meleeMaximumDamage);
+        this.isMelee = true;
         return this;
     }
 
     public Weapon setRangedMinimumDamage(double rangedMinimumDamage){
         this.persistentDataContainer.set(YNamespacedKeys.ITEM_RANGED_MINIMUM_DAMAGE, PersistentDataType.DOUBLE, rangedMinimumDamage);
+        this.isRanged = true;
         return this;
     }
 
     public Weapon setRangedMaximumDamage(double rangedMaximumDamage){
         this.persistentDataContainer.set(YNamespacedKeys.ITEM_RANGED_MAXIMUM_DAMAGE, PersistentDataType.DOUBLE, rangedMaximumDamage);
+        this.isRanged = true;
         return this;
     }
 

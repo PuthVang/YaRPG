@@ -1,14 +1,14 @@
 package net.prosavage.yarpg.api.itemstacks;
 
 import net.prosavage.yarpg.YaRPG;
-import net.prosavage.yarpg.api.itemstacks.utilities.AbstractItemUtil;
 import net.prosavage.yarpg.api.files.ArmorFiles;
+import net.prosavage.yarpg.api.itemstacks.utilities.AbstractItemUtil;
 import net.prosavage.yarpg.utilities.Color;
+import net.prosavage.yarpg.utilities.DefaultUtilities;
 import net.prosavage.yarpg.utilities.INumber;
 import net.prosavage.yarpg.utilities.keys.YNamespacedKeys;
 import net.prosavage.yarpg.utilities.tagtypes.BooleanTagType;
 import net.prosavage.yarpg.utilities.tagtypes.UUIDTagType;
-import org.apache.commons.lang.WordUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
@@ -16,9 +16,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
-import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
@@ -83,11 +81,11 @@ public class Armor extends AbstractItemUtil {
     }
 
     public String getName(){
-        return this.persistentDataContainer.getOrDefault(YNamespacedKeys.ITEM_NAME, PersistentDataType.STRING, getDefaultName());
+        return this.persistentDataContainer.getOrDefault(YNamespacedKeys.ITEM_NAME, PersistentDataType.STRING, DefaultUtilities.getDefaultName(this.itemStack));
     }
 
     public String getMaterial(){
-        return this.persistentDataContainer.getOrDefault(YNamespacedKeys.ITEM_MATERIAL, PersistentDataType.STRING, getDefaultMaterial());
+        return this.persistentDataContainer.getOrDefault(YNamespacedKeys.ITEM_MATERIAL, PersistentDataType.STRING, DefaultUtilities.getDefaultMaterial(this.itemStack));
     }
 
     public String getRarity(){
@@ -208,28 +206,6 @@ public class Armor extends AbstractItemUtil {
 
     public boolean isSpawnedIn(){
         return this.persistentDataContainer.getOrDefault(YNamespacedKeys.ITEM_GEM, new BooleanTagType(), false);
-    }
-
-    private String getDefaultMaterial(){
-        String key = String.valueOf(itemStack.getType().getKey()).replace("minecraft:", "");
-        String[] split = key.split("_");
-        List<String> words = new ArrayList<>();
-        for (String s : split){
-            s = WordUtils.capitalize(s);
-            words.add(s);
-        }
-        return words.get(0);
-    }
-
-    private String getDefaultName(){
-        String key = String.valueOf(itemStack.getType().getKey()).replace("minecraft:", "");
-        String[] split = key.split("_");
-        List<String> words = new ArrayList<>();
-        for (String s : split){
-            s = WordUtils.capitalize(s);
-            words.add(s);
-        }
-        return String.join(" ", words);
     }
 
     public OfflinePlayer getItemCreator(){
@@ -403,7 +379,7 @@ public class Armor extends AbstractItemUtil {
         return this;
     }
 
-    public @NotNull ItemStack build() {
+    public ItemStack build() {
         if (validFile || naturalItem) {
             List<String> itemLore = YaRPG.getInstance().getConfig().getStringList("armor.lore");
             removeUnusedNamespacedKeys();

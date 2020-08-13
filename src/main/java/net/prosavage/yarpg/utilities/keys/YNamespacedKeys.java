@@ -10,6 +10,8 @@ public final class YNamespacedKeys {
 
     private static final YaRPG PLUGIN = YaRPG.getInstance();
 
+    // ARMOR & WEAPONS
+
     public static final NamespacedKey ITEM_NAME = create("item_name");
     public static final NamespacedKey ITEM_MATERIAL = create("item_material");
     public static final NamespacedKey ITEM_RARITY = create("item_rarity");
@@ -56,43 +58,41 @@ public final class YNamespacedKeys {
     public static final NamespacedKey ITEM_IS_SPAWNED_IN = create("item_is_spawned_in");
     public static final NamespacedKey ITEM_CREATOR_PLAYER = create("item_creator_player");
 
+    // PLAYER & ENTITIES
+
+    public static final NamespacedKey ENTITY_CHARACTER_NUMBER = create("entity_character_number");
+    public static final NamespacedKey ENTITY_CLASS = create("entity_class");
     public static final NamespacedKey ENTITY_NAME = create("entity_name");
     public static final NamespacedKey ENTITY_LEVEL = create("entity_level");
-    public static final NamespacedKey ENTITY_HEALTH = create("entity_health");
-    public static final NamespacedKey ENTITY_MINIMUM_HEALTH = create("entity_minimum_health");
-    public static final NamespacedKey ENTITY_MAXIMUM_HEALTH = create("entity_maximum_health");
     public static final NamespacedKey ENTITY_EXPERIENCE = create("entity_experience");
     public static final NamespacedKey ENTITY_MINIMUM_EXPERIENCE = create("entity_minimum_experience");
     public static final NamespacedKey ENTITY_MAXIMUM_EXPERIENCE = create("entity_maximum_experience");
-    public static final NamespacedKey ENTITY_DAMAGE = create("entity_damage");
-    public static final NamespacedKey ENTITY_MINIMUM_DAMAGE = create("entity_minimum_damage");
-    public static final NamespacedKey ENTITY_MAXIMUM_DAMAGE = create("entity_maximum_damage");
+    public static final NamespacedKey ENTITY_HEALTH = create("entity_health");
+    public static final NamespacedKey ENTITY_MINIMUM_HEALTH = create("entity_minimum_health");
+    public static final NamespacedKey ENTITY_MAXIMUM_HEALTH = create("entity_maximum_health");
+    public static final NamespacedKey ENTITY_YARPG_DROPS = create("entity_yarpg_drops");
+    public static final NamespacedKey ENTITY_YARPG_DROPS_CHANCES = create("entity_yarpg_drops_chances");
+
     public static final NamespacedKey ENTITY_PROTECTION = create("entity_protection");
     public static final NamespacedKey ENTITY_MINIMUM_PROTECTION = create("entity_minimum_protection");
     public static final NamespacedKey ENTITY_MAXIMUM_PROTECTION = create("entity_maximum_protection");
-    public static final NamespacedKey ENTITY_YARPG_DROPS = create("entity_yarpg_drops");
-    public static final NamespacedKey ENTITY_YARPG_DROP_CHANCE = create("entity_yarpg_drop_chance");
+    public static final NamespacedKey ENTITY_REGENERATION = create("entity_regeneration");
+    public static final NamespacedKey ENTITY_DAMAGE = create("entity_damage");
+    public static final NamespacedKey ENTITY_MINIMUM_DAMAGE = create("entity_minimum_damage");
+    public static final NamespacedKey ENTITY_MAXIMUM_DAMAGE = create("entity_maximum_damage");
 
-    public static final NamespacedKey PLAYER_CHARACTER_NUMBER = create("player_character_number");
-    public static final NamespacedKey PLAYER_CLASS = create("player_class");
-    public static final NamespacedKey PLAYER_LEVEL = create("player_level");
-    public static final NamespacedKey PLAYER_EXPERIENCE = create("player_experience");
-    public static final NamespacedKey PLAYER_MAXIMUM_EXPERIENCE = create("player_maximum_experience");
-    public static final NamespacedKey PLAYER_HEALTH = create("player_health");
-    public static final NamespacedKey PLAYER_MAXIMUM_HEALTH = create("player_maximum_health");
-    public static final NamespacedKey PLAYER_PROTECTION = create("player_protection");
-    public static final NamespacedKey PLAYER_REGENERATION = create("player_regeneration");
-    public static final NamespacedKey PLAYER_COMBAT_TAGGED = create("player_combat_tagged");
-    public static final NamespacedKey PLAYER_COMBAT_TAG_TIME = create("player_combat_tag_time");
-    public static final NamespacedKey PLAYER_LOGGED_OUT_IN_COMBAT = create("player_logged_out_in_combat");
-    public static final NamespacedKey PLAYER_ATTRIBUTE_POINTS = create("player_attribute_points");
-    public static final NamespacedKey PLAYER_ATTRIBUTE_STRENGTH = create("player_attribute_strength");
-    public static final NamespacedKey PLAYER_ATTRIBUTE_INTELLIGENCE = create("player_attribute_intelligence");
-    public static final NamespacedKey PLAYER_ATTRIBUTE_CONSTITUTION = create("player_attribute_constitution");
-    public static final NamespacedKey PLAYER_ATTRIBUTE_DEXTERITY = create("player_attribute_dexterity");
-    public static final NamespacedKey PLAYER_ATTRIBUTE_CHARISMA = create("player_attribute_charisma");
-    public static final NamespacedKey PLAYER_ATTRIBUTE_WISDOM = create("player_attribute_wisdom");
-    public static final NamespacedKey PLAYER_ATTRIBUTE_LUCK = create("player_attribute_luck");
+    public static final NamespacedKey ENTITY_COMBAT_TAGGED = create("entity_combat_tagged");
+    public static final NamespacedKey ENTITY_COMBAT_TAG_TIME = create("entity_combat_tag_time");
+    public static final NamespacedKey ENTITY_LOGGED_OUT_IN_COMBAT = create("entity_logged_out_in_combat");
+
+    public static final NamespacedKey ENTITY_ATTRIBUTE_POINTS = create("entity_attribute_points");
+    public static final NamespacedKey ENTITY_ATTRIBUTE_STRENGTH = create("entity_attribute_strength");
+    public static final NamespacedKey ENTITY_ATTRIBUTE_INTELLIGENCE = create("entity_attribute_intelligence");
+    public static final NamespacedKey ENTITY_ATTRIBUTE_CONSTITUTION = create("entity_attribute_constitution");
+    public static final NamespacedKey ENTITY_ATTRIBUTE_DEXTERITY = create("entity_attribute_dexterity");
+    public static final NamespacedKey ENTITY_ATTRIBUTE_CHARISMA = create("entity_attribute_charisma");
+    public static final NamespacedKey ENTITY_ATTRIBUTE_WISDOM = create("entity_attribute_wisdom");
+    public static final NamespacedKey ENTITY_ATTRIBUTE_LUCK = create("entity_attribute_luck");
 
     public static final NamespacedKey[] ALL_ITEM_NAME_SPACED_KEYS = {
 

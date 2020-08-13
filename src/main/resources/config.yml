@@ -1,3 +1,10 @@
+formulas:
+  player:
+    base_health: '100.0'
+    maximum_experience: '({player_level} * 250)^1.25'
+  entity:
+    base_health: '20.0'
+
 weapon:
   lore:
     - ' '
