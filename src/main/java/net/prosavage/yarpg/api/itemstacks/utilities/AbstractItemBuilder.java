@@ -1,7 +1,6 @@
 package net.prosavage.yarpg.api.itemstacks.utilities;
 
 import net.prosavage.yarpg.utilities.Color;
-import net.prosavage.yarpg.utilities.INumber;
 import net.prosavage.yarpg.utilities.keys.YNamespacedKeys;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -16,9 +15,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public abstract class AbstractItemBuilder {
-
-    Color color = new Color();
-    private final INumber iNumber = new INumber();
 
     public ItemStack itemStack;
     public ItemMeta meta;
@@ -74,7 +70,7 @@ public abstract class AbstractItemBuilder {
 
     public AbstractItemBuilder setLore(String lore){
         List<String> listLore = new ArrayList<>();
-        Arrays.asList(lore.split("\\|\\|")).forEach(forEachLore -> listLore.add(color.ify(forEachLore)));
+        Arrays.asList(lore.split("\\|\\|")).forEach(forEachLore -> listLore.add(Color.ify(forEachLore)));
         this.meta.setLore(listLore);
         return this;
     }

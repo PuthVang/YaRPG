@@ -4,9 +4,11 @@ import java.text.DecimalFormat;
 
 public class NumberFormat {
 
-    private final DecimalFormat doubleFormat = new DecimalFormat("##.##");
+    private static final DecimalFormat doubleFormat = new DecimalFormat("##.##");
 
-    public DecimalFormat getDoubleFormat() {
-        return this.doubleFormat;
+    public NumberFormat(){}
+
+    public static DecimalFormat getDoubleFormat() {
+        return doubleFormat;
     }
 }

@@ -13,7 +13,7 @@ import java.util.Map;
 
 public class Placeholders {
 
-    private final DecimalFormat doubleFormat = new NumberFormat().getDoubleFormat();
+    private final DecimalFormat doubleFormat = NumberFormat.getDoubleFormat();
 
     Player player;
     LivingEntity entity;

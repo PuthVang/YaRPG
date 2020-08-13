@@ -7,7 +7,7 @@ import java.util.List;
 
 public class YFileUtil {
 
-    public List<File> getFiles(File folder){
+    public static List<File> getFiles(File folder){
         List<File> files = new ArrayList<>();
         if (folder.exists()) {
             Arrays.asList(folder.listFiles()).forEach(file -> {
@@ -19,7 +19,7 @@ public class YFileUtil {
         return files;
     }
 
-    public List<String> getStringFiles(File folder){
+    public static List<String> getStringFiles(File folder){
         List<String> files = new ArrayList<>();
         if (folder.exists()) {
             Arrays.asList(folder.listFiles()).forEach(file -> {
@@ -31,11 +31,11 @@ public class YFileUtil {
         return files;
     }
 
-    public int getFilesCount(File folder){
+    public static int getFilesCount(File folder){
         return folder.exists() ? getFiles(folder).size() : 0;
     }
 
-    public List<File> getFolders(File folder){
+    public static List<File> getFolders(File folder){
         List<File> files = new ArrayList<>();
         if (folder.exists()) {
             Arrays.asList(folder.listFiles()).forEach(file -> {
@@ -47,7 +47,7 @@ public class YFileUtil {
         return files;
     }
 
-    public List<String> getStringFolder(File folder){
+    public static List<String> getStringFolder(File folder){
         List<String> files = new ArrayList<>();
         Arrays.asList(folder.listFiles()).forEach(file -> {
             if (file.isDirectory()) {
@@ -57,18 +57,18 @@ public class YFileUtil {
         return files;
     }
 
-    public int getFoldersCount(File folder){
+    public static int getFoldersCount(File folder){
         return folder.exists() ? getFolders(folder).size() : 0;
     }
 
-    public int getFolderFileCount(File folder){
+    public static int getFolderFileCount(File folder){
         final int[] amount = {0};
         List<File> folders = getFolders(folder);
         if (folders != null) folders.forEach(file -> amount[0] = amount[0] + file.listFiles().length);
         return amount[0];
     }
 
-    public List<String> getFilesWithUnderlinesInsteadOfSpaces(File file){
+    public static List<String> getFilesWithUnderlinesInsteadOfSpaces(File file){
         List<String> files = getStringFiles(file);
         files.forEach(forEachFile -> {
             String stringFile = forEachFile.replaceAll(" ", " ");
@@ -77,7 +77,7 @@ public class YFileUtil {
         return files;
     }
 
-    public List<String> getFoldersWithUnderlinesInsteadOfSpaces(File file){
+    public static List<String> getFoldersWithUnderlinesInsteadOfSpaces(File file){
         List<String> files = getStringFolder(file);
         files.forEach(forEachFile -> {
             String stringFile = forEachFile.replaceAll(" ", " ");

@@ -14,9 +14,6 @@ import java.util.List;
 
 public abstract class AbstractItemUtil extends AbstractItemBuilder {
 
-    Color color = new Color();
-    NumberFormat numberFormat = new NumberFormat();
-
     public boolean naturalItem;
     public boolean validFile;
 
@@ -42,7 +39,7 @@ public abstract class AbstractItemUtil extends AbstractItemBuilder {
             s = s.replace("{item_rarity}", rarity)
                     .replace("{item_type}", material)
                     .replace("{item_required_level}", String.valueOf(level));
-            newLore.add(color.ify(s));
+            newLore.add(Color.ify(s));
         }
         return newLore;
     }
@@ -60,7 +57,7 @@ public abstract class AbstractItemUtil extends AbstractItemBuilder {
             if (attackCooldown > 0){
                 s = s.replace("{item_attack_cooldown}", "" + attackCooldown);
             }
-            newLore.add(color.ify(s));
+            newLore.add(Color.ify(s));
         }
         return newLore;
     }
@@ -69,19 +66,18 @@ public abstract class AbstractItemUtil extends AbstractItemBuilder {
         List<String> newLore = new ArrayList<>();
         for (String s : lore) {
             if (health > 0) {
-                s = s.replace("{item_health}", "" + numberFormat.getDoubleFormat().format(health));
+                s = s.replace("{item_health}", "" + NumberFormat.getDoubleFormat().format(health));
             }
             if (regeneration > 0) {
-                s = s.replace("{item_regeneration}", "" + numberFormat.getDoubleFormat().format(regeneration));
+                s = s.replace("{item_regeneration}", "" + NumberFormat.getDoubleFormat().format(regeneration));
             }
             if (protection > 0) {
-                s = s.replace("{item_protection}", "" + numberFormat.getDoubleFormat().format(protection));
+                s = s.replace("{item_protection}", "" + NumberFormat.getDoubleFormat().format(protection));
             }
-            newLore.add(color.ify(s));
+            newLore.add(Color.ify(s));
         }
         return newLore;
     }
-
 
     public List<String> parseAttributes(List<String> lore, int strength, int intelligence, int constitution, int dexterity,
                                         int charisma, int wisdom, int luck) {
@@ -94,7 +90,7 @@ public abstract class AbstractItemUtil extends AbstractItemBuilder {
             if (charisma != 0) s = s.replace("{item_cha}", String.valueOf(charisma));
             if (wisdom != 0) s = s.replace("{item_wis}", String.valueOf(wisdom));
             if (luck != 0) s = s.replace("{item_luk}", String.valueOf(luck));
-            newLore.add(color.ify(s));
+            newLore.add(Color.ify(s));
         }
         return newLore;
     }
@@ -109,7 +105,7 @@ public abstract class AbstractItemUtil extends AbstractItemBuilder {
             if (charisma > 0) s = s.replace("{item_required_cha}", String.valueOf(charisma));
             if (wisdom > 0) s = s.replace("{item_required_wis}", String.valueOf(wisdom));
             if (luck > 0) s = s.replace("{item_required_luk}", String.valueOf(luck));
-            newLore.add(color.ify(s));
+            newLore.add(Color.ify(s));
         }
         return newLore;
     }
@@ -117,9 +113,9 @@ public abstract class AbstractItemUtil extends AbstractItemBuilder {
     public List<String> removeUnwantedLore(List<String> lore){
         List<String> newLore = new ArrayList<>();
         for (String s : lore) {
-            newLore.add(color.ify(s));
+            newLore.add(Color.ify(s));
             if (s.contains("{item_") && s.endsWith("}")) {
-                newLore.remove(color.ify(s));
+                newLore.remove(Color.ify(s));
             }
         }
         return newLore;
@@ -132,12 +128,12 @@ public abstract class AbstractItemUtil extends AbstractItemBuilder {
         }
         List<String> newLore = new ArrayList<>();
         for (String s : lore) {
-            newLore.add(color.ify(s));
+            newLore.add(Color.ify(s));
             if (s.contains("{item_gem_sockets}")) {
                 newLore.remove(lore.indexOf(s));
                 if (!noGems) {
                     for (int i = 0; i < gems; i++) {
-                        newLore.add(lore.indexOf(s) + i, color.ify("&7» [ Gem Socket # " + i + " ]"));
+                        newLore.add(lore.indexOf(s) + i, Color.ify("&7» [ Gem Socket # " + i + " ]"));
                     }
                 }else {
                     int index = lore.indexOf(s);
@@ -156,12 +152,12 @@ public abstract class AbstractItemUtil extends AbstractItemBuilder {
         }
         List<String> newLore = new ArrayList<>();
         for (String s : lore) {
-            newLore.add(color.ify(s));
+            newLore.add(Color.ify(s));
             if (s.contains("{item_scroll_sockets}")) {
                 newLore.remove(lore.indexOf(s));
                 if (!noScroll) {
                     for (int i = 0; i < scroll; i++) {
-                        newLore.add(lore.indexOf(s) + i, color.ify("&7» [ Scroll Socket # " + i + " ]"));
+                        newLore.add(lore.indexOf(s) + i, Color.ify("&7» [ Scroll Socket # " + i + " ]"));
                     }
                 }else {
                     int index = lore.indexOf(s);
@@ -180,16 +176,16 @@ public abstract class AbstractItemUtil extends AbstractItemBuilder {
         }
         List<String> newLore = new ArrayList<>();
         for (String s : lore) {
-            newLore.add(color.ify(s));
+            newLore.add(Color.ify(s));
             if (s.contains("{item_description}")) {
                 if (hasDescription){
-                    newLore.remove(color.ify(s));
+                    newLore.remove(Color.ify(s));
                     for (String e : description) {
-                        newLore.add(color.ify("&7» &f" + e));
+                        newLore.add(Color.ify("&7» &f" + e));
                     }
                 }else{
-                    newLore.remove(newLore.indexOf(color.ify(s)) - 1);
-                    newLore.remove(color.ify(s));
+                    newLore.remove(newLore.indexOf(Color.ify(s)) - 1);
+                    newLore.remove(Color.ify(s));
                 }
             }
         }

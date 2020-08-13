@@ -17,16 +17,13 @@ import java.util.Arrays;
 @CommandPermission("yarpg")
 public class YaRPGCommand extends BaseCommand {
 
-    Color color = new Color();
-    INumber iNumber = new INumber();
-
     @Default
     @CommandCompletion("edit|give")
     @CommandPermission("yarpg.help")
     public void onDefault(Player sender) {
-        sender.sendMessage(color.ify("&f---------------- <#FBEE0F>YaRPG &f----------------"));
-        sender.sendMessage(color.ify("<#FBEE0F>/yarpg edit <weapon> <rarity> <name> <type> <value>&f: Edit either a weapon or armor."));
-        sender.sendMessage(color.ify("<#FBEE0F>/yarpg give <weapon/armor> <rarity> <name>&f: Gives yourself a weapon/armor."));
+        sender.sendMessage(Color.ify("&f---------------- <#FBEE0F>YaRPG &f----------------"));
+        sender.sendMessage(Color.ify("<#FBEE0F>/yarpg edit <weapon> <rarity> <name> <type> <value>&f: Edit either a weapon or armor."));
+        sender.sendMessage(Color.ify("<#FBEE0F>/yarpg give <weapon/armor> <rarity> <name>&f: Gives yourself a weapon/armor."));
     }
 
     @Subcommand("reload")
@@ -39,8 +36,8 @@ public class YaRPGCommand extends BaseCommand {
     @CommandCompletion("weapon|armor")
     @CommandPermission("yarpg.edit")
     public void onEdit(Player sender) {
-        sender.sendMessage(color.ify("&f---------------- <#FBEE0F>YaRPG &f----------------"));
-        sender.sendMessage(color.ify("<#FBEE0F>/yarpg edit <weapon/armor> <rarity> <name> <type> <value>&f: Edit either a weapon or armor."));
+        sender.sendMessage(Color.ify("&f---------------- <#FBEE0F>YaRPG &f----------------"));
+        sender.sendMessage(Color.ify("<#FBEE0F>/yarpg edit <weapon/armor> <rarity> <name> <type> <value>&f: Edit either a weapon or armor."));
     }
 
     @Subcommand("edit weapon")
@@ -50,8 +47,7 @@ public class YaRPGCommand extends BaseCommand {
     public void onEditWeapon(Player sender, String folderName, String fileName, @Optional String type, @Optional String value){
         WeaponFiles weaponFiles = new WeaponFiles(folderName, fileName);
         if (value != null) {
-
-            if (iNumber.isParsableAsInt(value)) {
+            if (INumber.isParsableAsInt(value)) {
                 int intValue = Integer.parseInt(value);
                 if (type.equals("minimum_level")) weaponFiles.setMinimumLevel(intValue);
                 if (type.equals("maximum_level")) weaponFiles.setMaximumLevel(intValue);
@@ -75,7 +71,7 @@ public class YaRPGCommand extends BaseCommand {
                 if (type.equals("maximum_scroll")) weaponFiles.setMaximumScroll(intValue);
                 if (type.equals("minimum_gems")) weaponFiles.setMinimumGem(intValue);
 
-            } else if (iNumber.isParsableAsDouble(value)) {
+            } else if (INumber.isParsableAsDouble(value)) {
                 double doubleValue = Double.parseDouble(value);
                 if (type.equals("melee_minimum_damage")) weaponFiles.setMeleeMinimumDamage(doubleValue);
                 if (type.equals("melee_maximum_damage")) weaponFiles.setMeleeMaximumDamage(doubleValue);
@@ -106,7 +102,7 @@ public class YaRPGCommand extends BaseCommand {
     public void onEditArmor(Player sender, String folderName, String fileName, @Optional String type, @Optional String value){
         ArmorFiles armorFiles = new ArmorFiles(folderName, fileName);
         if (value != null) {
-            if (iNumber.isParsableAsInt(value)) {
+            if (INumber.isParsableAsInt(value)) {
                 int intValue = Integer.parseInt(value);
                 if (type.equals("minimum_level")) armorFiles.setMinimumLevel(intValue);
                 if (type.equals("maximum_level")) armorFiles.setMaximumLevel(intValue);
@@ -128,7 +124,7 @@ public class YaRPGCommand extends BaseCommand {
                 if (type.equals("maximum_gem")) armorFiles.setMaximumGem(intValue);
                 if (type.equals("minimum_scroll")) armorFiles.setMinimumScroll(intValue);
                 if (type.equals("maximum_scroll")) armorFiles.setMaximumScroll(intValue);
-            }else if (iNumber.isParsableAsDouble(value)) {
+            }else if (INumber.isParsableAsDouble(value)) {
                 double doubleValue = Double.parseDouble(value);
                 if (type.equals("minimum_protection")) armorFiles.setMinimumProtection(doubleValue);
                 if (type.equals("maximum_protection")) armorFiles.setMaximumProtection(doubleValue);
@@ -157,8 +153,8 @@ public class YaRPGCommand extends BaseCommand {
     @CommandCompletion("weapon|armor")
     @CommandPermission("yarpg.give")
     public void onGive(Player sender) {
-        sender.sendMessage(color.ify("&f---------------- <#FBEE0F>YaRPG &f----------------"));
-        sender.sendMessage(color.ify("<#FBEE0F>/yarpg give <weapon/armor> <rarity> <name>&f: Gives yourself a weapon/armor."));
+        sender.sendMessage(Color.ify("&f---------------- <#FBEE0F>YaRPG &f----------------"));
+        sender.sendMessage(Color.ify("<#FBEE0F>/yarpg give <weapon/armor> <rarity> <name>&f: Gives yourself a weapon/armor."));
     }
 
     @Subcommand("give weapon")

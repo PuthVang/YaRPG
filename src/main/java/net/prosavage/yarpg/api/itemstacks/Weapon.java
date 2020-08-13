@@ -23,8 +23,7 @@ import java.util.UUID;
 
 public class Weapon extends AbstractItemUtil {
 
-    Color color = new Color();
-    INumber iNumber = new INumber();
+
 
     private boolean isMelee = false;
     private boolean isRanged = false;
@@ -53,7 +52,7 @@ public class Weapon extends AbstractItemUtil {
             setMaterial(weaponFiles.getCosmeticMaterial());
             setRarity(weaponFiles.getRarity());
             setDescription(weaponFiles.getDescription());
-            setLevel(iNumber.getInteger(weaponFiles.getMinimumLevel(), weaponFiles.getMaximumLevel()));
+            setLevel(INumber.getInteger(weaponFiles.getMinimumLevel(), weaponFiles.getMaximumLevel()));
             setRequiredStrength(weaponFiles.getRequiredStrength());
             setRequiredIntelligence(weaponFiles.getRequiredIntelligence());
             setRequiredConstitution(weaponFiles.getRequiredConstitution());
@@ -68,8 +67,8 @@ public class Weapon extends AbstractItemUtil {
             setCharisma(weaponFiles.getCharisma());
             setWisdom(weaponFiles.getWisdom());
             setLuck(weaponFiles.getLuck());
-            setGems(iNumber.getInteger(weaponFiles.getMinimumGem(), weaponFiles.getMaximumGem()));
-            setScrolls(iNumber.getInteger(weaponFiles.getMinimumScroll(), weaponFiles.getMaximumGem()));
+            setGems(INumber.getInteger(weaponFiles.getMinimumGem(), weaponFiles.getMaximumGem()));
+            setScrolls(INumber.getInteger(weaponFiles.getMinimumScroll(), weaponFiles.getMaximumGem()));
 
             setMeleeMinimumDamage(weaponFiles.getMeleeMinimumDamage());
             setMeleeMaximumDamage(weaponFiles.getMeleeMaximumDamage());
@@ -353,7 +352,7 @@ public class Weapon extends AbstractItemUtil {
             itemLore = parseScrollLore(itemLore, getScrolls());
             itemLore = parseDescriptionLore(itemLore, getDescription());
             itemLore = removeUnwantedLore(itemLore);
-            setName(color.ify(getName()));
+            setName(Color.ify(getName()));
             setLore(itemLore);
             meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
         }

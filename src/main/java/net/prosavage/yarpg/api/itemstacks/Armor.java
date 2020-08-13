@@ -23,8 +23,7 @@ import java.util.UUID;
 
 public class Armor extends AbstractItemUtil {
 
-    Color color = new Color();
-    INumber iNumber = new INumber();
+
 
     public Armor(String stringMaterial) {
         super(stringMaterial);
@@ -53,7 +52,7 @@ public class Armor extends AbstractItemUtil {
             setMaterial(armorFiles.getCosmeticMaterial());
             setRarity(armorFiles.getRarity());
             setDescription(armorFiles.getDescription());
-            setLevel(iNumber.getInteger(armorFiles.getMinimumLevel(), armorFiles.getMaximumLevel()));
+            setLevel(INumber.getInteger(armorFiles.getMinimumLevel(), armorFiles.getMaximumLevel()));
             setRequiredStrength(armorFiles.getRequiredStrength());
             setRequiredIntelligence(armorFiles.getRequiredIntelligence());
             setRequiredConsitution(armorFiles.getRequiredConsitution());
@@ -74,8 +73,8 @@ public class Armor extends AbstractItemUtil {
             setCharisma(armorFiles.getCharisma());
             setWisdom(armorFiles.getWisdom());
             setLuck(armorFiles.getLuck());
-            setGems(iNumber.getInteger(armorFiles.getMinimumGem(), armorFiles.getMaximumGem()));
-            setScrolls(iNumber.getInteger(armorFiles.getMinimumScroll(), armorFiles.getMaximumGem()));
+            setGems(INumber.getInteger(armorFiles.getMinimumGem(), armorFiles.getMaximumGem()));
+            setScrolls(INumber.getInteger(armorFiles.getMinimumScroll(), armorFiles.getMaximumGem()));
             setUnbreakable();
         }
     }
@@ -384,9 +383,9 @@ public class Armor extends AbstractItemUtil {
             List<String> itemLore = YaRPG.getInstance().getConfig().getStringList("armor.lore");
             removeUnusedNamespacedKeys();
             meta.setDisplayName(getName());
-            setHealth(iNumber.getDouble(getMinimumHealth(), getMaximumHealth()));
-            setRegeneration(iNumber.getDouble(getMinimumRegeneration(), getMaximumRegeneration()));
-            setProtection(iNumber.getDouble(getMinimumProtection(), getMaximumProtection()));
+            setHealth(INumber.getDouble(getMinimumHealth(), getMaximumHealth()));
+            setRegeneration(INumber.getDouble(getMinimumRegeneration(), getMaximumRegeneration()));
+            setProtection(INumber.getDouble(getMinimumProtection(), getMaximumProtection()));
             itemLore = parseBasicLore(itemLore, getRarity(), getMaterial(), getLevel());
             itemLore = parseGainedStatsLore(itemLore, getHealth(),
                     getRegeneration(), getProtection());
@@ -397,7 +396,7 @@ public class Armor extends AbstractItemUtil {
             itemLore = parseScrollLore(itemLore, getScrolls());
             itemLore = parseDescriptionLore(itemLore, getDescription());
             itemLore = removeUnwantedLore(itemLore);
-            setName(color.ify(getName()));
+            setName(Color.ify(getName()));
             setLore(itemLore);
             meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
             itemStack.setItemMeta(this.meta);

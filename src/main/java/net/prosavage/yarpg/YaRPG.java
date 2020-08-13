@@ -20,8 +20,6 @@ public final class YaRPG extends JavaPlugin {
         return instance;
     }
 
-    YFileUtil yFileUtil = new YFileUtil();
-    Color color = new Color();
     FileManager fileManager;
     PaperCommandManager manager;
 
@@ -30,10 +28,10 @@ public final class YaRPG extends JavaPlugin {
         fileManager = new FileManager(this);
         fileManager.generateFiles();
         manager = new PaperCommandManager(this);
-        new CompletionManager();
-        new CommandManager().loadAll();
-        log("&eTotal (YAML) weapon(s) loaded: &7" + yFileUtil.getFolderFileCount(fileManager.getWeaponFolder()));
-        log("&eTotal (YAML) armor(s) loaded: &7" + yFileUtil.getFolderFileCount(fileManager.getArmorFolder()));
+        CompletionManager.loadAll();
+        CommandManager.loadAll();
+        log("&eTotal (YAML) weapon(s) loaded: &7" + YFileUtil.getFolderFileCount(fileManager.getWeaponFolder()));
+        log("&eTotal (YAML) armor(s) loaded: &7" + YFileUtil.getFolderFileCount(fileManager.getArmorFolder()));
         log("");
     }
 
@@ -43,7 +41,7 @@ public final class YaRPG extends JavaPlugin {
     }
 
     public void log(Object message){
-        getLogger().info(color.ify(String.valueOf(message)));
+        getLogger().info(Color.ify(String.valueOf(message)));
     }
 
     public FileManager getFileManager() {

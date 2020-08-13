@@ -14,8 +14,6 @@ import java.util.List;
 
 public class ItemBuilder extends AbstractItemBuilder {
 
-    Color color = new Color();
-
     public ItemBuilder(String stringMaterial) {
         super(stringMaterial);
     }
@@ -39,7 +37,7 @@ public class ItemBuilder extends AbstractItemBuilder {
 
     public AbstractItemBuilder setLore(String lore){
         List<String> listLore = new ArrayList<>();
-        Arrays.asList(lore.split("\\|\\|")).forEach(forEachLore -> listLore.add(color.ify(forEachLore)));
+        Arrays.asList(lore.split("\\|\\|")).forEach(forEachLore -> listLore.add(Color.ify(forEachLore)));
         this.meta.setLore(listLore);
         return this;
     }
