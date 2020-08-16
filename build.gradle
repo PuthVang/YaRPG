@@ -25,15 +25,8 @@ dependencies {
     compileOnly 'org.jetbrains:annotations:16.0.3'
     compile 'co.aikar:acf-paper:0.5.0-SNAPSHOT'
     compile 'com.udojava:EvalEx:2.5'
-}
-
-publishing {
-    publications {
-        shadow(MavenPublication) {
-            from components.java
-            artifact shadowJar
-        }
-    }
+    compile 'net.kyori:adventure-text-minimessage:3.0.0-SNAPSHOT'
+    compile 'net.kyori:adventure-platform-bukkit:4.0.0-SNAPSHOT'
 }
 
 tasks.build.dependsOn tasks.shadowJar

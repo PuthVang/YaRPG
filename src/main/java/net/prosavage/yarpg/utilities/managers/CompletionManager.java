@@ -15,11 +15,11 @@ public class CompletionManager {
     private static FileManager fileManager;
 
     public CompletionManager(){
-        manager = YaRPG.getInstance().getManager();
-        fileManager = YaRPG.getInstance().getFileManager();
     }
 
     public static void loadAll(){
+        manager = YaRPG.getInstance().getManager();
+        fileManager = YaRPG.getInstance().getFileManager();
 
         manager.getCommandCompletions().registerCompletion("weaponRarity", c ->
                 YFileUtil.getFoldersWithUnderlinesInsteadOfSpaces(fileManager.getWeaponFolder()));

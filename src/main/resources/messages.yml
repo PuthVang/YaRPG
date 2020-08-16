@@ -1,0 +1,18 @@
+messages:
+  help:
+    - "<white>---------------- <#FBEE0F>YaRPG <white>----------------"
+    - "<#FBEE0F><hover:show_text:'<white>Reload the configuration.'>/yarpg reload"
+    - "<#FBEE0F><hover:show_text:'<white>Give yourself a weapon.'>/yarpg give weapon <white><hover:show_text:'<white>Weapon rarity folder name.'><rarity> <hover:show_text:'<white>Weapon file name.'><name>"
+    - "<#FBEE0F><hover:show_text:'<white>Give yourself an armor.'>/yarpg give armor <white><hover:show_text:'<white>Armor rarity folder name.'><rarity> <hover:show_text:'<white>Armor file name.'><name>"
+    - "<#FBEE0F><hover:show_text:'<white>Edit a weapon.'>/yarpg edit weapon <white><hover:show_text:'<white>Weapon rarity folder name.'><rarity> <hover:show_text:'<white>Weapon file name.'><name> <hover:show_text:'<white>Weapon attribute type.'><type> <hover:show_text:'<white>Weapon attribute value.'><value>"
+    - "<#FBEE0F><hover:show_text:'<white>Edit an armor.'>/yarpg edit armor <white><hover:show_text:'<white>Armor rarity folder name.'><rarity> <hover:show_text:'<white>Armor file name.'><name> <hover:show_text:'<white>Armor attribute type.'><type> <hover:show_text:'<white>Armor attribute value.'><value>"
+  reload:
+    - "<#FBEE0F>You have successfully reloaded the configuration."
+  give:
+    - "<white>---------------- <#FBEE0F>YaRPG <white>----------------"
+    - "<#FBEE0F><hover:show_text:'<white>Give yourself a weapon.'>/yarpg give weapon <white><hover:show_text:'<white>Weapon rarity folder name.'><rarity> <hover:show_text:'<white>Weapon file name.'><name>"
+    - "<#FBEE0F><hover:show_text:'<white>Give yourself an armor.'>/yarpg give armor <white><hover:show_text:'<white>Armor rarity folder name.'><rarity> <hover:show_text:'<white>Armor file name.'><name>"
+  edit:
+    - "<white>---------------- <#FBEE0F>YaRPG <white>----------------"
+    - "<#FBEE0F><hover:show_text:'<white>Edit a weapon.'>/yarpg edit weapon <white><hover:show_text:'<white>Weapon rarity folder name.'><rarity> <hover:show_text:'<white>Weapon file name.'><name> <hover:show_text:'<white>Weapon attribute type.'><type> <hover:show_text:'<white>Weapon attribute value.'><value>"
+    - "<#FBEE0F><hover:show_text:'<white>Edit an armor.'>/yarpg edit armor <white><hover:show_text:'<white>Armor rarity folder name.'><rarity> <hover:show_text:'<white>Armor file name.'><name> <hover:show_text:'<white>Armor attribute type.'><type> <hover:show_text:'<white>Armor attribute value.'><value>"

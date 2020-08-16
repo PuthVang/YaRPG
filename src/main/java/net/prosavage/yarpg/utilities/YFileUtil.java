@@ -7,6 +7,8 @@ import java.util.List;
 
 public class YFileUtil {
 
+    public YFileUtil(){}
+
     public static List<File> getFiles(File folder){
         List<File> files = new ArrayList<>();
         if (folder.exists()) {
@@ -64,7 +66,7 @@ public class YFileUtil {
     public static int getFolderFileCount(File folder){
         final int[] amount = {0};
         List<File> folders = getFolders(folder);
-        if (folders != null) folders.forEach(file -> amount[0] = amount[0] + file.listFiles().length);
+        folders.forEach(file -> amount[0] = amount[0] + file.listFiles().length);
         return amount[0];
     }
 

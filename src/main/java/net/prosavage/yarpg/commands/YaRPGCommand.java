@@ -2,15 +2,15 @@ package net.prosavage.yarpg.commands;
 
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.*;
-import net.prosavage.yarpg.YaRPG;
-import net.prosavage.yarpg.api.itemstacks.Armor;
-import net.prosavage.yarpg.api.itemstacks.Weapon;
 import net.prosavage.yarpg.api.files.ArmorFiles;
 import net.prosavage.yarpg.api.files.WeaponFiles;
-import net.prosavage.yarpg.utilities.Color;
+import net.prosavage.yarpg.api.itemstacks.Armor;
+import net.prosavage.yarpg.api.itemstacks.Weapon;
 import net.prosavage.yarpg.utilities.INumber;
+import net.prosavage.yarpg.utilities.MessageUtilities;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+
 import java.util.Arrays;
 
 @CommandAlias("YaRPG")
@@ -18,26 +18,30 @@ import java.util.Arrays;
 public class YaRPGCommand extends BaseCommand {
 
     @Default
-    @CommandCompletion("edit|give")
+    @CommandCompletion("reload|edit|give|info")
     @CommandPermission("yarpg.help")
     public void onDefault(Player sender) {
-        sender.sendMessage(Color.ify("&f---------------- <#FBEE0F>YaRPG &f----------------"));
-        sender.sendMessage(Color.ify("<#FBEE0F>/yarpg edit <weapon> <rarity> <name> <type> <value>&f: Edit either a weapon or armor."));
-        sender.sendMessage(Color.ify("<#FBEE0F>/yarpg give <weapon/armor> <rarity> <name>&f: Gives yourself a weapon/armor."));
+        new MessageUtilities(sender, "messages.help").send();
     }
 
     @Subcommand("reload")
     @CommandPermission("yarpg.reload")
     public void onReload(Player sender){
-        YaRPG.getInstance().reloadConfig();
+        new MessageUtilities(sender, "messages.reload").send();
+    }
+
+    @Subcommand("give")
+    @CommandCompletion("weapon|armor")
+    @CommandPermission("yarpg.give")
+    public void onGive(Player sender) {
+        new MessageUtilities(sender, "messages.give").send();
     }
 
     @Subcommand("edit")
     @CommandCompletion("weapon|armor")
     @CommandPermission("yarpg.edit")
     public void onEdit(Player sender) {
-        sender.sendMessage(Color.ify("&f---------------- <#FBEE0F>YaRPG &f----------------"));
-        sender.sendMessage(Color.ify("<#FBEE0F>/yarpg edit <weapon/armor> <rarity> <name> <type> <value>&f: Edit either a weapon or armor."));
+        new MessageUtilities(sender, "messages.edit").send();
     }
 
     @Subcommand("edit weapon")
@@ -147,14 +151,6 @@ public class YaRPGCommand extends BaseCommand {
             }
             armorFiles.save();
         }
-    }
-
-    @Subcommand("give")
-    @CommandCompletion("weapon|armor")
-    @CommandPermission("yarpg.give")
-    public void onGive(Player sender) {
-        sender.sendMessage(Color.ify("&f---------------- <#FBEE0F>YaRPG &f----------------"));
-        sender.sendMessage(Color.ify("<#FBEE0F>/yarpg give <weapon/armor> <rarity> <name>&f: Gives yourself a weapon/armor."));
     }
 
     @Subcommand("give weapon")

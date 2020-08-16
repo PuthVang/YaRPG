@@ -12,7 +12,6 @@ import java.util.List;
 public class ArmorFiles {
 
     FileManager fileManager = YaRPG.getInstance().getFileManager();
-    YFileUtil yFileUtil = new YFileUtil();
 
     private String name;
     private String extension = "";
@@ -24,7 +23,7 @@ public class ArmorFiles {
     public ArmorFiles(String rarity, String name){
         this.rarity = rarity;
         this.name = name.replaceAll("_", " ");
-        this.rarityFolders = yFileUtil.getFolders(fileManager.getArmorFolder());
+        this.rarityFolders = YFileUtil.getFolders(fileManager.getArmorFolder());
         if (!name.endsWith(".yml")) extension = ".yml";
         this.armorFile = new File(fileManager.getArmorFolder() + File.separator + this.rarity + File.separator + this.name + this.extension);
         this.armorConfiguration = YamlConfiguration.loadConfiguration(this.armorFile);
@@ -32,7 +31,7 @@ public class ArmorFiles {
 
     public ArmorFiles(String rarity){
         this.rarity = rarity;
-        this.rarityFolders = yFileUtil.getFolders(fileManager.getArmorFolder());
+        this.rarityFolders = YFileUtil.getFolders(fileManager.getArmorFolder());
     }
 
     public ArmorFiles setName(String name) {
@@ -364,7 +363,7 @@ public class ArmorFiles {
     }
 
     public int getArmorFilesAmount(){
-        return yFileUtil.getFilesCount(this.armorFile);
+        return YFileUtil.getFilesCount(this.armorFile);
     }
 
     private YamlConfiguration getArmorConfiguration() {

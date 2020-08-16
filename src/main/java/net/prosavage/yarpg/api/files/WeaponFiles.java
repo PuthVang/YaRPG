@@ -13,7 +13,6 @@ import java.util.Objects;
 public class WeaponFiles {
 
     FileManager fileManager = YaRPG.getInstance().getFileManager();
-    YFileUtil yFileUtil = new YFileUtil();
 
     private String name;
     private String extension = "";
@@ -25,7 +24,7 @@ public class WeaponFiles {
     public WeaponFiles(String rarity, String name){
         this.rarity = rarity;
         this.name = name.replaceAll("_", " ");
-        this.rarityFolders = yFileUtil.getFolders(fileManager.getWeaponFolder());
+        this.rarityFolders = YFileUtil.getFolders(fileManager.getWeaponFolder());
         if (!name.endsWith(".yml")) extension = ".yml";
         this.weaponFile = new File(fileManager.getWeaponFolder() + File.separator + this.rarity + File.separator + this.name + this.extension);
         this.weaponConfiguration = YamlConfiguration.loadConfiguration(this.weaponFile);
@@ -33,7 +32,7 @@ public class WeaponFiles {
 
     public WeaponFiles(String rarity){
         this.rarity = rarity;
-        this.rarityFolders = yFileUtil.getFolders(fileManager.getWeaponFolder());
+        this.rarityFolders = YFileUtil.getFolders(fileManager.getWeaponFolder());
     }
 
     public WeaponFiles setName(String name) {
