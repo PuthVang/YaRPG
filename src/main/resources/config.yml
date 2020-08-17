@@ -1,3 +1,16 @@
+file_auto_update:
+  # Warning before using
+  # This may or may not bring back comments that are deleted
+  #
+  # This is only intended to be used
+  # if you want your config to update to the new config automatically without you doing it
+  #
+  # This can also mess up some formatting as well.
+  enabled: false
+  files:
+    - 'config'
+    - 'messages'
+
 formulas:
   player:
     base_health: '100.0'

@@ -27,7 +27,7 @@ public final class YaRPG extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        fileManager = new FileManager(this, true);
+        fileManager = new FileManager(this, true).update();
         manager = new PaperCommandManager(this);
         result = BukkitAudiences.create(this);
         CompletionManager.loadAll();
@@ -58,4 +58,9 @@ public final class YaRPG extends JavaPlugin {
     public BukkitAudiences getResult() {
         return result;
     }
+
+    public void reload(){
+        this.fileManager.update();
+    }
+
 }

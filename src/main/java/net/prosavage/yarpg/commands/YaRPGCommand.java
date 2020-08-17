@@ -2,6 +2,7 @@ package net.prosavage.yarpg.commands;
 
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.*;
+import net.prosavage.yarpg.YaRPG;
 import net.prosavage.yarpg.api.files.ArmorFiles;
 import net.prosavage.yarpg.api.files.WeaponFiles;
 import net.prosavage.yarpg.api.itemstacks.Armor;
@@ -27,6 +28,7 @@ public class YaRPGCommand extends BaseCommand {
     @Subcommand("reload")
     @CommandPermission("yarpg.reload")
     public void onReload(Player sender){
+        YaRPG.getInstance().reload();
         new MessageUtilities(sender, "messages.reload").send();
     }
 
