@@ -3,13 +3,16 @@ package net.prosavage.yarpg;
 import co.aikar.commands.PaperCommandManager;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import net.prosavage.yarpg.utilities.Color;
+import net.prosavage.yarpg.utilities.PremiumChecker;
 import net.prosavage.yarpg.utilities.YFileUtil;
 import net.prosavage.yarpg.utilities.managers.CommandManager;
 import net.prosavage.yarpg.utilities.managers.CompletionManager;
 import net.prosavage.yarpg.utilities.managers.FileManager;
+import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.jetbrains.annotations.NotNull;
 
-public final class YaRPG extends JavaPlugin {
+public final class YaRPG extends JavaPlugin implements @NotNull Listener {
 
     private static YaRPG instance;
 
@@ -30,8 +33,10 @@ public final class YaRPG extends JavaPlugin {
         fileManager = new FileManager(this, true).update();
         manager = new PaperCommandManager(this);
         result = BukkitAudiences.create(this);
+
         CompletionManager.loadAll();
         CommandManager.loadAll();
+        PremiumChecker.announceIfFalse();
 
         log("&eTotal (YAML) weapon(s) loaded: &7" + YFileUtil.getFolderFileCount(fileManager.getWeaponFolder()));
         log("&eTotal (YAML) armor(s) loaded: &7" + YFileUtil.getFolderFileCount(fileManager.getArmorFolder()));
