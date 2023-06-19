@@ -9,7 +9,7 @@ import java.util.List;
 
 public class MessageUtilities {
 
-    private final MiniMessage miniMessage = MiniMessage.get();
+    private final MiniMessage miniMessage = MiniMessage.miniMessage();
 
     Player player;
     String yamlNode;
@@ -23,7 +23,7 @@ public class MessageUtilities {
         BukkitAudiences result = YaRPG.getInstance().getResult();
         List<String> messages = YaRPG.getInstance().getFileManager().getMessageConfiguration().getStringList(yamlNode);
         for (String s : messages) {
-            result.audience(player).sendMessage(miniMessage.parse(s));
+            result.player(player).sendMessage(miniMessage.deserialize(s));
         }
     }
 }

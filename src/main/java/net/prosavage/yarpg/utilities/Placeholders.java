@@ -2,7 +2,7 @@ package net.prosavage.yarpg.utilities;
 
 import net.prosavage.yarpg.api.entities.YEntity;
 import net.prosavage.yarpg.api.entities.YPlayer;
-import org.apache.commons.lang.text.StrSubstitutor;
+import org.apache.commons.text.StringSubstitutor;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Mob;
 import org.bukkit.entity.Player;
@@ -19,7 +19,7 @@ public class Placeholders {
     LivingEntity entity;
     String variablePrefix;
     String messageReplaced;
-    StrSubstitutor strSubstitutor;
+    StringSubstitutor stringSubstitutor;
 
     public Placeholders(Player player, String variablePrefix, String messageReplaced){
         this.player = player;
@@ -69,9 +69,9 @@ public class Placeholders {
         values.put(variablePrefix + "_wis", wisdom);
         values.put(variablePrefix + "_luk", luck);
 
-        this.strSubstitutor = new StrSubstitutor(values);
-        this.strSubstitutor.setVariablePrefix("{");
-        this.strSubstitutor.setVariableSuffix("}");
+        this.stringSubstitutor = new StringSubstitutor(values);
+        this.stringSubstitutor.setVariablePrefix("{");
+        this.stringSubstitutor.setVariableSuffix("}");
     }
 
     public Placeholders(Mob entity, String variablePrefix, String messageReplaced){
@@ -121,11 +121,11 @@ public class Placeholders {
         values.put(variablePrefix + "_leggings", leggings);
         values.put(variablePrefix + "_boots", boots);
 
-        this.strSubstitutor = new StrSubstitutor(values);
+        this.stringSubstitutor = new StringSubstitutor(values);
     }
 
     public String parse(){
-        this.messageReplaced = this.strSubstitutor.replace(this.messageReplaced);
+        this.messageReplaced = this.stringSubstitutor.replace(this.messageReplaced);
         return this.messageReplaced;
     }
 

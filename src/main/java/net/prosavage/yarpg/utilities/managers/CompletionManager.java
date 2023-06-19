@@ -35,7 +35,7 @@ public class CompletionManager {
             return null;
         });
 
-        manager.getCommandCompletions().registerCompletion("weaponTypes", c -> ImmutableList.of("minimum_level", "maximum_level", "required_strength", "required_intelligence", "required_consitution", "required_dexterity", "required_charisma", "required_wisdom", "required_luck", "strength", "intelligence", "constitution", "dexterity", "charisma", "wisdom", "luck", "minimum_gem", "maximum_gem", "minimum_scroll", "maximum_scroll", "minimum_gems", "melee_minimum_damage", "melee_maximum_damage", "ranged_minimum_damage", "ranged_maximum_damage", "attack_cooldown", "rarity", "name", "cosmetic_material", "description"));
+        manager.getCommandCompletions().registerCompletion("weaponTypes", c -> ImmutableList.of("minimum_level", "maximum_level", "required_strength", "required_intelligence", "required_consitution", "required_dexterity", "required_charisma", "required_wisdom", "required_luck", "strength", "intelligence", "constitution", "dexterity", "charisma", "wisdom", "luck", "minimum_gem", "maximum_gem", "minimum_scroll", "maximum_scroll", "minimum_gems", "melee_minimum_damage", "melee_maximum_damage", "ranged_minimum_damage", "ranged_maximum_damage", "attack_cooldown", "rarity", "name", "actual_material", "cosmetic_material", "description"));
 
         manager.getCommandCompletions().registerCompletion("armorRarity", c ->
                 YFileUtil.getFoldersWithUnderlinesInsteadOfSpaces(fileManager.getArmorFolder()));

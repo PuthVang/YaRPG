@@ -1,6 +1,6 @@
 package net.prosavage.yarpg.utilities;
 
-import org.apache.commons.lang.WordUtils;
+import org.apache.commons.text.WordUtils;
 import org.bukkit.entity.Entity;
 import org.bukkit.inventory.ItemStack;
 

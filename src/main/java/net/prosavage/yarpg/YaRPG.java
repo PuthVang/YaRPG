@@ -10,9 +10,8 @@ import net.prosavage.yarpg.utilities.managers.CompletionManager;
 import net.prosavage.yarpg.utilities.managers.FileManager;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.jetbrains.annotations.NotNull;
 
-public final class YaRPG extends JavaPlugin implements @NotNull Listener {
+public final class YaRPG extends JavaPlugin {
 
     private static YaRPG instance;
 
