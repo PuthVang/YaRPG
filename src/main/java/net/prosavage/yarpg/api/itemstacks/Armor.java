@@ -204,7 +204,7 @@ public class Armor extends AbstractItemUtil {
     }
 
     public boolean isSpawnedIn(){
-        return this.persistentDataContainer.getOrDefault(YNamespacedKeys.ITEM_GEM, new BooleanTagType(), false);
+        return this.persistentDataContainer.getOrDefault(YNamespacedKeys.ITEM_IS_SPAWNED_IN, new BooleanTagType(), false);
     }
 
     public OfflinePlayer getItemCreator(){
@@ -382,7 +382,7 @@ public class Armor extends AbstractItemUtil {
         if (validFile || naturalItem) {
             List<String> itemLore = YaRPG.getInstance().getConfig().getStringList("armor.lore");
             removeUnusedNamespacedKeys();
-            meta.setDisplayName(getName());
+            meta.setDisplayName(Color.ify(getName()));
             setHealth(INumber.getDouble(getMinimumHealth(), getMaximumHealth()));
             setRegeneration(INumber.getDouble(getMinimumRegeneration(), getMaximumRegeneration()));
             setProtection(INumber.getDouble(getMinimumProtection(), getMaximumProtection()));
@@ -396,7 +396,6 @@ public class Armor extends AbstractItemUtil {
             itemLore = parseScrollLore(itemLore, getScrolls());
             itemLore = parseDescriptionLore(itemLore, getDescription());
             itemLore = removeUnwantedLore(itemLore);
-            setName(Color.ify(getName()));
             setLore(itemLore);
             meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
             itemStack.setItemMeta(this.meta);

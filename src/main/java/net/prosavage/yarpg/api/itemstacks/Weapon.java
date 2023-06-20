@@ -23,8 +23,6 @@ import java.util.UUID;
 
 public class Weapon extends AbstractItemUtil {
 
-
-
     private boolean isMelee = false;
     private boolean isRanged = false;
 
@@ -75,8 +73,6 @@ public class Weapon extends AbstractItemUtil {
             setRangedMinimumDamage(weaponFiles.getRangedMinimumDamage());
             setRangedMaximumDamage(weaponFiles.getRangedMaximumDamage());
             setAttackCooldown(weaponFiles.getAttackCooldown());
-
-            setName(weaponFiles.getName());
         }
     }
 
@@ -342,6 +338,7 @@ public class Weapon extends AbstractItemUtil {
         if (validFile || naturalItem) {
             List<String> itemLore = YaRPG.getInstance().getConfig().getStringList("weapon.lore");
             removeUnusedNamespacedKeys();
+            meta.setDisplayName(getName());
             itemLore = parseBasicLore(itemLore, getRarity(), getMaterial(), getLevel());
             itemLore = parseGainedStatsLore(itemLore, getMeleeMinimumDamage(), getMeleeMaximumDamage(),
                     getRangedMinimumDamage(), getRangedMaximumDamage(), getAttackCooldown());
@@ -352,7 +349,6 @@ public class Weapon extends AbstractItemUtil {
             itemLore = parseScrollLore(itemLore, getScrolls());
             itemLore = parseDescriptionLore(itemLore, getDescription());
             itemLore = removeUnwantedLore(itemLore);
-            setName(Color.ify(getName()));
             setLore(itemLore);
             meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
         }

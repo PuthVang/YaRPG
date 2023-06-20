@@ -19,6 +19,8 @@ public class DefaultUtilities {
             s = WordUtils.capitalize(s);
             words.add(s);
         }
+
+        if (words.size() == 0) return "STONE";
         return words.get(0);
     }
 
@@ -30,6 +32,8 @@ public class DefaultUtilities {
             s = WordUtils.capitalize(s);
             words.add(s);
         }
+
+        if (words.size() == 0) return "STONE";
         return String.join(" ", words);
     }
 

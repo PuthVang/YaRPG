@@ -51,11 +51,15 @@ public class YFileUtil {
 
     public static List<String> getStringFolder(File folder){
         List<String> files = new ArrayList<>();
+
+        if (getFoldersCount(folder) == 0) return files;
+
         Arrays.asList(folder.listFiles()).forEach(file -> {
             if (file.isDirectory()) {
                 files.add(file.getName());
             }
         });
+
         return files;
     }
 

@@ -227,119 +227,121 @@ public class WeaponFiles {
     }
 
     public String getRarity() {
-        return this.rarity;
+        return this.rarity != null ? this.rarity : "Uncommon";
     }
 
     public String getActualMaterial() {
-        return this.getWeaponConfiguration().getString("item_actual_material");
+        return this.getWeaponConfiguration().getString("item_actual_material", "WOODEN_SWORD");
     }
 
     public String getCosmeticMaterial() {
-        return this.getWeaponConfiguration().getString("item_cosmetic_material");
+        return this.getWeaponConfiguration().getString("item_cosmetic_material", "WOODEN");
     }
 
     public List<String> getDescription() {
-        return this.getWeaponConfiguration().getStringList("item_description");
+        List<String> description = this.getWeaponConfiguration().getStringList("item_description");
+        if (description.isEmpty()) return Arrays.asList("This is an example item", "a few lines of description", "not so much but enough.");
+        return description;
     }
 
     public int getMinimumLevel() {
-        return this.getWeaponConfiguration().getInt("item_minimum_level");
+        return this.getWeaponConfiguration().getInt("item_minimum_level", 1);
     }
 
     public int getMaximumLevel() {
-        return this.getWeaponConfiguration().getInt("item_maximum_level");
+        return this.getWeaponConfiguration().getInt("item_maximum_level", 1);
     }
 
     public int getRequiredStrength() {
-        return this.getWeaponConfiguration().getInt("item_required_strength");
+        return this.getWeaponConfiguration().getInt("item_required_strength", 0);
     }
 
     public int getRequiredIntelligence() {
-        return this.getWeaponConfiguration().getInt("item_required_intelligence");
+        return this.getWeaponConfiguration().getInt("item_required_intelligence", 0);
     }
 
     public int getRequiredConstitution() {
-        return this.getWeaponConfiguration().getInt("item_required_constitution");
+        return this.getWeaponConfiguration().getInt("item_required_constitution", 0);
     }
 
     public int getRequiredDexterity() {
-        return this.getWeaponConfiguration().getInt("item_required_dexterity");
+        return this.getWeaponConfiguration().getInt("item_required_dexterity", 0);
     }
 
     public int getRequiredCharisma() {
-        return this.getWeaponConfiguration().getInt("item_required_charisma");
+        return this.getWeaponConfiguration().getInt("item_required_charisma", 0);
     }
 
     public int getRequiredWisdom() {
-        return this.getWeaponConfiguration().getInt("item_required_wisdom");
+        return this.getWeaponConfiguration().getInt("item_required_wisdom", 0);
     }
 
     public int getRequiredLuck() {
-        return this.getWeaponConfiguration().getInt("item_required_luck");
+        return this.getWeaponConfiguration().getInt("item_required_luck", 0);
     }
 
     public double getMeleeMinimumDamage() {
-        return this.getWeaponConfiguration().getDouble("item_melee_minimum_damage");
+        return this.getWeaponConfiguration().getDouble("item_melee_minimum_damage", 0);
     }
 
     public double getMeleeMaximumDamage() {
-        return this.getWeaponConfiguration().getDouble("item_melee_maximum_damage");
+        return this.getWeaponConfiguration().getDouble("item_melee_maximum_damage", 1);
     }
 
     public double getRangedMinimumDamage() {
-        return this.getWeaponConfiguration().getDouble("item_ranged_minimum_damage");
+        return this.getWeaponConfiguration().getDouble("item_ranged_minimum_damage", 0);
     }
 
     public double getRangedMaximumDamage() {
-        return this.getWeaponConfiguration().getDouble("item_ranged_maximum_damage");
+        return this.getWeaponConfiguration().getDouble("item_ranged_maximum_damage", 1);
     }
 
     public double getAttackCooldown() {
-        return this.getWeaponConfiguration().getDouble("item_attack_cooldown");
+        return this.getWeaponConfiguration().getDouble("item_attack_cooldown", 1);
     }
 
     public int getStrength() {
-        return this.getWeaponConfiguration().getInt("item_strength");
+        return this.getWeaponConfiguration().getInt("item_strength", 1);
     }
 
     public int getIntelligence() {
-        return this.getWeaponConfiguration().getInt("item_intelligence");
+        return this.getWeaponConfiguration().getInt("item_intelligence", 1);
     }
 
     public int getConstitution() {
-        return this.getWeaponConfiguration().getInt("item_constitution");
+        return this.getWeaponConfiguration().getInt("item_constitution", 1);
     }
 
     public int getDexterity() {
-        return this.getWeaponConfiguration().getInt("item_dexterity");
+        return this.getWeaponConfiguration().getInt("item_dexterity", 1);
     }
 
     public int getCharisma() {
-        return this.getWeaponConfiguration().getInt("item_charisma");
+        return this.getWeaponConfiguration().getInt("item_charisma", 1);
     }
 
     public int getWisdom() {
-        return this.getWeaponConfiguration().getInt("item_wisdom");
+        return this.getWeaponConfiguration().getInt("item_wisdom", 1);
     }
 
     public int getLuck() {
-        return this.getWeaponConfiguration().getInt("item_luck");
+        return this.getWeaponConfiguration().getInt("item_luck", 1);
     }
 
     public int getMinimumGem() {
-        return this.getWeaponConfiguration().getInt("item_minimum_gem");
+        return this.getWeaponConfiguration().getInt("item_minimum_gem", 0);
     }
 
     public int getMaximumGem() {
-        return this.getWeaponConfiguration().getInt("item_maximum_gem");
+        return this.getWeaponConfiguration().getInt("item_maximum_gem", 1);
     }
 
     public int getMinimumScroll() {
-        return this.getWeaponConfiguration().getInt("item_minimum_dcroll");
+        return this.getWeaponConfiguration().getInt("item_minimum_scroll", 0);
     }
 
     public int getMaximumScroll() {
-        return this.getWeaponConfiguration().getInt("item_maximum_scroll");
+        return this.getWeaponConfiguration().getInt("item_maximum_scroll", 1);
     }
 
     public List<File> getRarityFolders() {

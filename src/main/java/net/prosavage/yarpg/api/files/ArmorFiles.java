@@ -235,119 +235,121 @@ public class ArmorFiles {
     }
 
     public String getActualMaterial() {
-        return this.getArmorConfiguration().getString("item_actual_material");
+        return this.getArmorConfiguration().getString("item_actual_material", "LEATHER_HELMET");
     }
 
     public String getCosmeticMaterial() {
-        return this.getArmorConfiguration().getString("item_cosmetic_material");
+        return this.getArmorConfiguration().getString("item_cosmetic_material", "LEATHER");
     }
 
     public List<String> getDescription() {
-        return this.getArmorConfiguration().getStringList("item_description");
+        List<String> description = this.getArmorConfiguration().getStringList("item_description");
+        if (description.isEmpty()) return Arrays.asList("This is an example item", "a few lines of description", "not so much but enough.");
+        return description;
     }
 
     public int getMinimumLevel() {
-        return this.getArmorConfiguration().getInt("item_minimum_level");
+        return this.getArmorConfiguration().getInt("item_minimum_level", 1);
     }
 
     public int getMaximumLevel() {
-        return this.getArmorConfiguration().getInt("item_maximum_level");
+        return this.getArmorConfiguration().getInt("item_maximum_level", 1);
     }
 
     public int getRequiredStrength() {
-        return this.getArmorConfiguration().getInt("item_required_strength");
+        return this.getArmorConfiguration().getInt("item_required_strength", 0);
     }
 
     public int getRequiredIntelligence() {
-        return this.getArmorConfiguration().getInt("item_required_intelligence");
+        return this.getArmorConfiguration().getInt("item_required_intelligence", 0);
     }
 
     public int getRequiredConsitution() {
-        return this.getArmorConfiguration().getInt("item_required_constitution");
+        return this.getArmorConfiguration().getInt("item_required_constitution", 0);
     }
 
     public int getRequiredDexterity() {
-        return this.getArmorConfiguration().getInt("item_required_dexterity");
+        return this.getArmorConfiguration().getInt("item_required_dexterity", 0);
     }
 
     public int getRequiredCharisma() {
-        return this.getArmorConfiguration().getInt("item_required_charisma");
+        return this.getArmorConfiguration().getInt("item_required_charisma", 0);
     }
 
     public int getRequiredWisdom() {
-        return this.getArmorConfiguration().getInt("item_required_wisdom");
+        return this.getArmorConfiguration().getInt("item_required_wisdom", 0);
     }
 
     public int getRequiredLuck() {
-        return this.getArmorConfiguration().getInt("item_required_luck");
+        return this.getArmorConfiguration().getInt("item_required_luck", 0);
     }
 
     public double getMinimumHealth() {
-        return this.getArmorConfiguration().getDouble("item_minimum_health");
+        return this.getArmorConfiguration().getDouble("item_minimum_health", 0);
     }
 
     public double getMaximumHealth() {
-        return this.getArmorConfiguration().getDouble("item_maximum_health");
+        return this.getArmorConfiguration().getDouble("item_maximum_health", 10);
     }
 
     public double getMinimumRegeneration() {
-        return this.getArmorConfiguration().getDouble("item_minimum_regeneration");
+        return this.getArmorConfiguration().getDouble("item_minimum_regeneration", 0);
     }
 
     public double getMaximumRegeneration() {
-        return this.getArmorConfiguration().getDouble("item_maximum_regeneration");
+        return this.getArmorConfiguration().getDouble("item_maximum_regeneration", 10);
     }
 
     public double getMinimumProtection() {
-        return this.getArmorConfiguration().getDouble("item_minimum_protection");
+        return this.getArmorConfiguration().getDouble("item_minimum_protection", 0);
     }
 
     public double getMaximumProtection() {
-        return this.getArmorConfiguration().getDouble("item_maximum_protection");
+        return this.getArmorConfiguration().getDouble("item_maximum_protection", 10);
     }
 
     public int getStrength() {
-        return this.getArmorConfiguration().getInt("item_strength");
+        return this.getArmorConfiguration().getInt("item_strength", 1);
     }
 
     public int getIntelligence() {
-        return this.getArmorConfiguration().getInt("item_intelligence");
+        return this.getArmorConfiguration().getInt("item_intelligence", 1);
     }
 
     public int getConstitution() {
-        return this.getArmorConfiguration().getInt("item_constitution");
+        return this.getArmorConfiguration().getInt("item_constitution", 1);
     }
 
     public int getDexterity() {
-        return this.getArmorConfiguration().getInt("item_dexterity");
+        return this.getArmorConfiguration().getInt("item_dexterity", 1);
     }
 
     public int getCharisma() {
-        return this.getArmorConfiguration().getInt("item_charisma");
+        return this.getArmorConfiguration().getInt("item_charisma", 1);
     }
 
     public int getWisdom() {
-        return this.getArmorConfiguration().getInt("item_wisdom");
+        return this.getArmorConfiguration().getInt("item_wisdom", 1);
     }
 
     public int getLuck() {
-        return this.getArmorConfiguration().getInt("item_luck");
+        return this.getArmorConfiguration().getInt("item_luck", 1);
     }
 
     public int getMinimumGem() {
-        return this.getArmorConfiguration().getInt("item_minimum_gem");
+        return this.getArmorConfiguration().getInt("item_minimum_gem", 0);
     }
 
     public int getMaximumGem() {
-        return this.getArmorConfiguration().getInt("item_maximum_gem");
+        return this.getArmorConfiguration().getInt("item_maximum_gem", 1);
     }
 
     public int getMinimumScroll() {
-        return this.getArmorConfiguration().getInt("item_minimum_scroll");
+        return this.getArmorConfiguration().getInt("item_minimum_scroll", 0);
     }
 
     public int getMaximumScroll() {
-        return this.getArmorConfiguration().getInt("item_maximum_scroll");
+        return this.getArmorConfiguration().getInt("item_maximum_scroll", 1);
     }
 
     public List<File> getRarityFolders() {
