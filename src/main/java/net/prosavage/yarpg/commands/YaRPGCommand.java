@@ -19,7 +19,7 @@ import java.util.Arrays;
 public class YaRPGCommand extends BaseCommand {
 
     @Default
-    @CommandCompletion("reload|edit|give|info")
+    @CommandCompletion("reload|edit|give|info|debug")
     @CommandPermission("yarpg.help")
     public void onDefault(Player sender) {
         new MessageUtilities(sender, "messages.help").send();
@@ -173,6 +173,12 @@ public class YaRPGCommand extends BaseCommand {
         if (armor.isValidFile()) {
             sender.getInventory().addItem(armor.build());
         }
+    }
+
+    @Subcommand("info")
+    @CommandPermission("yarpg.info")
+    public void onInfo(Player sender) {
+        new MessageUtilities(sender, "messages.info").send();
     }
 
 }
