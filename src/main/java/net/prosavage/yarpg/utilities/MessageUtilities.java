@@ -23,6 +23,7 @@ public class MessageUtilities {
         BukkitAudiences result = YaRPG.getInstance().getResult();
         List<String> messages = YaRPG.getInstance().getFileManager().getMessageConfiguration().getStringList(yamlNode);
         for (String s : messages) {
+            s = new Placeholders(player, "player", s).parse();
             result.player(player).sendMessage(miniMessage.deserialize(s));
         }
     }
