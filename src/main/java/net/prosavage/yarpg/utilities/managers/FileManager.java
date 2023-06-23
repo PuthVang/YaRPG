@@ -8,7 +8,6 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Collections;
 import java.util.List;
 
 public class FileManager {
@@ -59,6 +58,7 @@ public class FileManager {
     public void generateFiles(){
         if (!this.configFile.exists()) {
             this.plugin.saveDefaultConfig();
+        } if (!this.messageFile.exists()) {
             this.plugin.saveResource("messages.yml", false);
         }
     }
@@ -81,7 +81,7 @@ public class FileManager {
     public void updateFile(String file, String extension){
         if (file.endsWith(extension)) extension = "";
         try {
-            ConfigUpdater.update(plugin, file + extension, new File(plugin.getDataFolder(), file + extension), Collections.singletonList("null"));
+            ConfigUpdater.update(plugin, file + extension, new File(plugin.getDataFolder(), file + extension), (List<String>) null);
         } catch (IOException e) {
             e.printStackTrace();
         }

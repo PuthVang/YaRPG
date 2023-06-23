@@ -175,7 +175,7 @@ public class YaRPGCommand extends BaseCommand {
         }
     }
 
-    @Subcommand("info")
+    @Subcommand("info|stat|stats")
     @CommandPermission("yarpg.info")
     public void onInfo(Player sender) {
         new MessageUtilities(sender, "messages.info").send();
