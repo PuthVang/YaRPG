@@ -24,15 +24,12 @@ public class YPlayer extends AbstractEntity {
     }
 
     public String getName() {
-        return persistentDataContainer.getOrDefault(YNamespacedKeys.ENTITY_NAME, PersistentDataType.STRING, player.getName());
-    }
-
-    public int getCharacterNumber() {
-        return persistentDataContainer.getOrDefault(YNamespacedKeys.ENTITY_CHARACTER_NUMBER, PersistentDataType.INTEGER, 1);
+        return player.getDisplayName().equals("") ? player.getDisplayName() : player.getName();
     }
 
     public String getPlayerClass() {
-        return persistentDataContainer.getOrDefault(YNamespacedKeys.ENTITY_CLASS, PersistentDataType.STRING, "Unspecialized");
+        String defaultClass = YaRPG.getInstance().getConfig().getString("player.default_class");
+        return persistentDataContainer.getOrDefault(YNamespacedKeys.ENTITY_CLASS, PersistentDataType.STRING, defaultClass);
     }
 
     public double getBaseHealth(){
@@ -52,18 +49,16 @@ public class YPlayer extends AbstractEntity {
     }
 
     public boolean hasData(){
-        return this.persistentDataContainer.has(YNamespacedKeys.ENTITY_CHARACTER_NUMBER, PersistentDataType.INTEGER)
-                && this.persistentDataContainer.has(YNamespacedKeys.ENTITY_CLASS, PersistentDataType.STRING)
+        boolean useCustomHealth = YaRPG.getInstance().getConfig().getBoolean("settings.use_custom_health", false);
+
+        boolean data = this.persistentDataContainer.has(YNamespacedKeys.ENTITY_CLASS, PersistentDataType.STRING)
                 && this.persistentDataContainer.has(YNamespacedKeys.ENTITY_LEVEL, PersistentDataType.INTEGER)
                 && this.persistentDataContainer.has(YNamespacedKeys.ENTITY_EXPERIENCE, PersistentDataType.DOUBLE)
-                && this.persistentDataContainer.has(YNamespacedKeys.ENTITY_MAXIMUM_EXPERIENCE, PersistentDataType.DOUBLE)
-                && this.persistentDataContainer.has(YNamespacedKeys.ENTITY_HEALTH, PersistentDataType.DOUBLE)
+                && this.persistentDataContainer.has(YNamespacedKeys.ENTITY_MAXIMUM_EXPERIENCE, PersistentDataType.DOUBLE);
+        boolean health = this.persistentDataContainer.has(YNamespacedKeys.ENTITY_HEALTH, PersistentDataType.DOUBLE)
                 && this.persistentDataContainer.has(YNamespacedKeys.ENTITY_MAXIMUM_HEALTH, PersistentDataType.DOUBLE);
-    }
 
-    public YPlayer setCharacterNumber(int characterNumber) {
-        persistentDataContainer.set(YNamespacedKeys.ENTITY_CHARACTER_NUMBER, PersistentDataType.INTEGER, characterNumber);
-        return this;
+        return data && (!useCustomHealth || health);
     }
 
     public YPlayer setPlayerClass(String playerClass) {
@@ -101,16 +96,6 @@ public class YPlayer extends AbstractEntity {
         this.persistentDataContainer.remove(YNamespacedKeys.ENTITY_COMBAT_TAGGED);
         this.persistentDataContainer.remove(YNamespacedKeys.ENTITY_COMBAT_TAG_TIME);
         return this;
-    }
-
-    public void setDefault(){
-        setCharacterNumber(1);
-        setPlayerClass("Unspecialized");
-        setLevel(1);
-        setExperience(0.0);
-        setMaximumExperience(-1.0);
-        setMaximumHealth(getBaseHealth());
-        setHealth(getMaximumHealth());
     }
 
 }

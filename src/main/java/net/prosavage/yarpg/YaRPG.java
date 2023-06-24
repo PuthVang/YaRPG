@@ -8,7 +8,6 @@ import net.prosavage.yarpg.utilities.YFileUtil;
 import net.prosavage.yarpg.utilities.managers.CommandManager;
 import net.prosavage.yarpg.utilities.managers.CompletionManager;
 import net.prosavage.yarpg.utilities.managers.FileManager;
-import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class YaRPG extends JavaPlugin {

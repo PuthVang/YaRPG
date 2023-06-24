@@ -1,9 +1,12 @@
 package net.prosavage.yarpg.api.entities.utilities;
 
+import net.prosavage.yarpg.YaRPG;
 import net.prosavage.yarpg.utilities.DefaultUtilities;
 import net.prosavage.yarpg.utilities.keys.YNamespacedKeys;
 import org.bukkit.EntityEffect;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.EntityEquipment;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
@@ -43,15 +46,22 @@ public abstract class AbstractEntity {
     }
 
     public double getHealth(){
-        return persistentDataContainer.getOrDefault(YNamespacedKeys.ENTITY_HEALTH, PersistentDataType.DOUBLE, 0.01);
+        boolean useCustomHealth = YaRPG.getInstance().getConfig().getBoolean("settings.use_custom_health", false);
+
+        if (useCustomHealth) return persistentDataContainer.getOrDefault(YNamespacedKeys.ENTITY_HEALTH, PersistentDataType.DOUBLE, 0.01);
+        return entity.getHealth();
     }
 
     public double getMinimumHealth(){
-        return persistentDataContainer.getOrDefault(YNamespacedKeys.ENTITY_MINIMUM_HEALTH, PersistentDataType.DOUBLE, 0.0);
+        if (entity instanceof Player) return entity.getHealth();
+        return persistentDataContainer.getOrDefault(YNamespacedKeys.ENTITY_MINIMUM_HEALTH, PersistentDataType.DOUBLE, 0.01);
     }
 
     public double getMaximumHealth(){
-        return persistentDataContainer.getOrDefault(YNamespacedKeys.ENTITY_MAXIMUM_HEALTH, PersistentDataType.DOUBLE, 0.0);
+        boolean useCustomHealth = YaRPG.getInstance().getConfig().getBoolean("settings.use_custom_health", false);
+
+        if (useCustomHealth) return persistentDataContainer.getOrDefault(YNamespacedKeys.ENTITY_MAXIMUM_HEALTH, PersistentDataType.DOUBLE, 0.0);
+        return entity.getAttribute(Attribute.GENERIC_MAX_HEALTH).getBaseValue();
     }
 
     public double getRegeneration(){
@@ -135,12 +145,20 @@ public abstract class AbstractEntity {
     }
 
     public AbstractEntity setHealth(double health){
-        this.persistentDataContainer.set(YNamespacedKeys.ENTITY_HEALTH, PersistentDataType.DOUBLE, health);
+        boolean useCustomHealth = YaRPG.getInstance().getConfig().getBoolean("settings.use_custom_health", false);
+
+        if (useCustomHealth) this.persistentDataContainer.set(YNamespacedKeys.ENTITY_HEALTH, PersistentDataType.DOUBLE, health);
+        else this.entity.setHealth(health);
+
         return this;
     }
 
     public AbstractEntity setMaximumHealth(double maximumHealth){
-        this.persistentDataContainer.set(YNamespacedKeys.ENTITY_MAXIMUM_HEALTH, PersistentDataType.DOUBLE, maximumHealth);
+        boolean useCustomHealth = YaRPG.getInstance().getConfig().getBoolean("settings.use_custom_health", false);
+        double entityBaseHealth = YaRPG.getInstance().getConfig().getDouble("formulas.entity.base_health", 20.0);
+
+        if (useCustomHealth) this.persistentDataContainer.set(YNamespacedKeys.ENTITY_MAXIMUM_HEALTH, PersistentDataType.DOUBLE, maximumHealth);
+        else this.entity.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(entityBaseHealth + (maximumHealth * 2));
         return this;
     }
 
@@ -195,24 +213,37 @@ public abstract class AbstractEntity {
     }
 
     public void takeDamage(double damage){
-        double newHealth = (getHealth()) - damage;
-        entity.damage(0.0);
-        entity.playEffect(EntityEffect.HURT);
-        setHealth(newHealth);
-        if (newHealth <= 0){
-            entity.setHealth(0.0);
+        boolean useCustomHealth = YaRPG.getInstance().getConfig().getBoolean("settings.use_custom_health", false);
+
+        if (useCustomHealth) {
+            double newHealth = (getHealth()) - damage;
+            entity.playEffect(EntityEffect.HURT);
+            setHealth(newHealth);
+            if (newHealth <= 0) {
+                entity.setHealth(0.0);
+            }
+            return;
         }
+
+        entity.damage(damage);
     }
 
     public void updateHealth(){
-        double health = getHealth();
-        double maxHealth = getMaximumHealth();
-        if (health > maxHealth) {
-            health = maxHealth;
+        boolean useCustomHealth = YaRPG.getInstance().getConfig().getBoolean("settings.use_custom_health", false);
+
+        double health = entity.getHealth();
+        double maxHealth = entity.getAttribute(Attribute.GENERIC_MAX_HEALTH).getBaseValue();
+        if (useCustomHealth) {
+            health = getHealth();
+            maxHealth = getMaximumHealth();
+            if (health > maxHealth) {
+                health = maxHealth;
+            }
+            if (health < 0) {
+                health = 0.1;
+            }
         }
-        if (health < 0) {
-            health = 0.1;
-        }
+
         entity.setHealth(Math.abs(health / maxHealth) * 20);
     }
 

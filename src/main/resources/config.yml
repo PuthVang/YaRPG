@@ -11,6 +11,12 @@ file_auto_update:
     - 'config'
     - 'messages'
 
+settings:
+  use_custom_health: false
+
+player:
+  default_class: 'Unspecialized'
+
 formulas:
   player:
     base_health: '100.0'
