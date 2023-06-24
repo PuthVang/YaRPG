@@ -17,6 +17,9 @@ settings:
 player:
   default_class: 'Unspecialized'
 
+messages:
+  actionbar: '&cHP&7: &c{player_health}&7/&c{player_maximum_health} &f| &eEXP&7: &e{player_experience}&7/&e{player_maximum_experience} '
+
 formulas:
   player:
     base_health: '100.0'

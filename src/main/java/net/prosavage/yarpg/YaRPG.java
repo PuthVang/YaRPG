@@ -2,6 +2,7 @@ package net.prosavage.yarpg;
 
 import co.aikar.commands.PaperCommandManager;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
+import net.prosavage.yarpg.listeners.PlayerJoinEventListener;
 import net.prosavage.yarpg.utilities.Color;
 import net.prosavage.yarpg.utilities.PremiumChecker;
 import net.prosavage.yarpg.utilities.YFileUtil;
@@ -31,6 +32,8 @@ public final class YaRPG extends JavaPlugin {
         fileManager = new FileManager(this, true).update();
         manager = new PaperCommandManager(this);
         result = BukkitAudiences.create(this);
+
+        getServer().getPluginManager().registerEvents(new PlayerJoinEventListener(), this);
 
         CompletionManager.loadAll();
         CommandManager.loadAll();
