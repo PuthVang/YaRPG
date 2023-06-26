@@ -24,6 +24,12 @@ public class PlayerJoinEventListener implements Listener {
         YPlayer yPlayer = new YPlayer(player);
         yPlayer.setDefaultData();
 
+        if (yPlayer.hasCombatLogged()) {
+            String combatLoggedMessage = Color.ify(YaRPG.getInstance().getConfig().getString("combat_tag.logged.message"));
+            player.sendMessage(combatLoggedMessage);
+            yPlayer.setCombatLogged(false);
+        }
+
         new BukkitRunnable() {
             @Override
             public void run() {

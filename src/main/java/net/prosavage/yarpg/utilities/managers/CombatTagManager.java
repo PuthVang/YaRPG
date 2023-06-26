@@ -19,7 +19,6 @@ public class CombatTagManager {
 
         String combatUntagMessage = Color.ify(plugin.getConfig().getString("combat_tag.untagged.message"));
         int duration = plugin.getConfig().getInt("combat_tag.duration");
-        System.out.println(duration);
         this.combatTagMap = ExpiringMap.builder()
                 .expiration(duration, TimeUnit.SECONDS)
                 .expirationListener((uuid, bool) -> {
