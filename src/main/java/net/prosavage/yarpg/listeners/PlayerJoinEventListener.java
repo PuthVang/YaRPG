@@ -30,16 +30,19 @@ public class PlayerJoinEventListener implements Listener {
             yPlayer.setCombatLogged(false);
         }
 
+        int actionBarDuration = YaRPG.getInstance().getConfig().getInt("actionbar.duration");
+        int regenerationDuration = YaRPG.getInstance().getConfig().getInt("regeneration.duration");
+
         new BukkitRunnable() {
             @Override
             public void run() {
-                String string = YaRPG.getInstance().getConfig().getString("messages.actionbar");
+                String string = YaRPG.getInstance().getConfig().getString("actionbar.message");
                 String actionBar = Color.ify(new Placeholders(player, "player", string).parse());
 
                 player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(actionBar));
             }
 
-        }.runTaskTimer(YaRPG.getInstance(), 1L, 5L);
+        }.runTaskTimer(YaRPG.getInstance(), 1L, actionBarDuration);
 
         new BukkitRunnable() {
             @Override
@@ -54,7 +57,7 @@ public class PlayerJoinEventListener implements Listener {
                 }
             }
 
-        }.runTaskTimer(YaRPG.getInstance(), 1L, 10L);
+        }.runTaskTimer(YaRPG.getInstance(), 1L, regenerationDuration);
 
     }
 

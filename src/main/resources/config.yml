@@ -27,8 +27,16 @@ combat_tag:
   logged:
     message: '&cYou have combat logged'
 
-messages:
-  actionbar: '&cHP&7: &c{player_health}&7/&c{player_maximum_health} &f| &eEXP&7: &e{player_experience}&7/&e{player_maximum_experience} '
+actionbar:
+  # Duration should be in ticks
+  # Multiply by 20 if you want seconds
+  duration: 5
+  message: '&cHP&7: &c{player_health}&7/&c{player_maximum_health} &f| &eEXP&7: &e{player_experience}&7/&e{player_maximum_experience}'
+
+regeneration:
+  # Duration should be in ticks
+  # Multiply by 20 if you want seconds
+  duration: 20
 
 formulas:
   player:
