@@ -41,7 +41,7 @@ public class YPlayer extends AbstractEntity {
     }
 
     public boolean isCombatTagged(){
-        return this.persistentDataContainer.getOrDefault(YNamespacedKeys.ENTITY_COMBAT_TAGGED, new BooleanTagType(), false);
+        return YaRPG.getInstance().getCombatTagManager().isExpired(this.player);
     }
 
     public boolean hasCombatLogged(){
@@ -77,7 +77,8 @@ public class YPlayer extends AbstractEntity {
     }
 
     public YPlayer setCombatTagged(boolean tagged){
-        this.persistentDataContainer.set(YNamespacedKeys.ENTITY_COMBAT_TAGGED, new BooleanTagType(), tagged);
+        if (tagged) YaRPG.getInstance().getCombatTagManager().addPlayer(player);
+        else YaRPG.getInstance().getCombatTagManager().removePlayer(player);
         return this;
     }
 

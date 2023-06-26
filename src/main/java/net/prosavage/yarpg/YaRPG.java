@@ -2,11 +2,13 @@ package net.prosavage.yarpg;
 
 import co.aikar.commands.PaperCommandManager;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
+import net.prosavage.yarpg.listeners.PlayerDamageEventListener;
 import net.prosavage.yarpg.listeners.PlayerJoinEventListener;
 import net.prosavage.yarpg.listeners.PlayerRegenEventListener;
 import net.prosavage.yarpg.utilities.Color;
 import net.prosavage.yarpg.utilities.PremiumChecker;
 import net.prosavage.yarpg.utilities.YFileUtil;
+import net.prosavage.yarpg.utilities.managers.CombatTagManager;
 import net.prosavage.yarpg.utilities.managers.CommandManager;
 import net.prosavage.yarpg.utilities.managers.CompletionManager;
 import net.prosavage.yarpg.utilities.managers.FileManager;
@@ -28,14 +30,18 @@ public final class YaRPG extends JavaPlugin {
     PaperCommandManager manager;
     BukkitAudiences result;
 
+    CombatTagManager combatTagManager;
+
     @Override
     public void onEnable() {
         fileManager = new FileManager(this, true).update();
         manager = new PaperCommandManager(this);
         result = BukkitAudiences.create(this);
+        combatTagManager = new CombatTagManager(this);
 
         getServer().getPluginManager().registerEvents(new PlayerJoinEventListener(), this);
         getServer().getPluginManager().registerEvents(new PlayerRegenEventListener(), this);
+        getServer().getPluginManager().registerEvents(new PlayerDamageEventListener(), this);
 
         CompletionManager.loadAll();
         CommandManager.loadAll();
@@ -71,4 +77,7 @@ public final class YaRPG extends JavaPlugin {
         this.fileManager.update();
     }
 
+    public CombatTagManager getCombatTagManager() {
+        return this.combatTagManager;
+    }
 }

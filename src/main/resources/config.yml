@@ -17,6 +17,16 @@ settings:
 player:
   default_class: 'Unspecialized'
 
+combat_tag:
+  # Duration should be in seconds
+  duration: 30
+  tagged:
+    message: '&cYou have been combat tagged'
+  untagged:
+    message: '&aYou are no longer combat tagged'
+  logged:
+    message: '&cYou have combat logged'
+
 messages:
   actionbar: '&cHP&7: &c{player_health}&7/&c{player_maximum_health} &f| &eEXP&7: &e{player_experience}&7/&e{player_maximum_experience} '
 
