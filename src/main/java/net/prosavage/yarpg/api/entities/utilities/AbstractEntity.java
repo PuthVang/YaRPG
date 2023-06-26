@@ -4,6 +4,7 @@ import net.prosavage.yarpg.YaRPG;
 import net.prosavage.yarpg.utilities.DefaultUtilities;
 import net.prosavage.yarpg.utilities.keys.YNamespacedKeys;
 import org.bukkit.EntityEffect;
+import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -212,6 +213,13 @@ public abstract class AbstractEntity {
     public AbstractEntity setLuck(int luck) {
         this.persistentDataContainer.set(YNamespacedKeys.ENTITY_ATTRIBUTE_LUCK, PersistentDataType.INTEGER, luck);
         return this;
+    }
+
+    public void deleteData() {
+        NamespacedKey[] namespacedKeys = YNamespacedKeys.getAllItemNamespacedKeys();
+        for (NamespacedKey key : namespacedKeys) {
+            persistentDataContainer.remove(key);
+        }
     }
 
     public void takeDamage(double damage) {

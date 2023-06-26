@@ -3,6 +3,7 @@ package net.prosavage.yarpg.commands;
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.*;
 import net.prosavage.yarpg.YaRPG;
+import net.prosavage.yarpg.api.entities.YPlayer;
 import net.prosavage.yarpg.api.files.ArmorFiles;
 import net.prosavage.yarpg.api.files.WeaponFiles;
 import net.prosavage.yarpg.api.itemstacks.Armor;
@@ -179,6 +180,13 @@ public class YaRPGCommand extends BaseCommand {
     @CommandPermission("yarpg.info")
     public void onInfo(Player sender) {
         new MessageUtilities(sender, "messages.info").send();
+    }
+
+    @Subcommand("delete|reset")
+    @CommandPermission("yarpg.info")
+    public void onDelete(Player sender) {
+        YPlayer yPlayer = new YPlayer(sender);
+        yPlayer.deleteData();
     }
 
 }

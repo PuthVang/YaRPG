@@ -98,4 +98,17 @@ public class YPlayer extends AbstractEntity {
         return this;
     }
 
+    public void setDefaultData(){
+        if (hasData()) {
+            return;
+        }
+
+        setPlayerClass(getPlayerClass());
+        setLevel(getLevel());
+        setExperience(getExperience());
+        setMaximumExperience(getMaximumExperience());
+        setHealth(getHealth());
+        setMaximumHealth(getMaximumHealth());
+    }
+
 }
