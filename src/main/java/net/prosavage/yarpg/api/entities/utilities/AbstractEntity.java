@@ -17,9 +17,9 @@ public abstract class AbstractEntity {
     public PersistentDataContainer persistentDataContainer;
     public EntityEquipment entityEquipment;
 
-    public AbstractEntity(){}
+    public AbstractEntity() {}
 
-    public AbstractEntity(LivingEntity entity){
+    public AbstractEntity(LivingEntity entity) {
         this.entity = entity;
         this.persistentDataContainer = entity.getPersistentDataContainer();
         this.entityEquipment = entity.getEquipment();
@@ -45,82 +45,82 @@ public abstract class AbstractEntity {
         return persistentDataContainer.getOrDefault(YNamespacedKeys.ENTITY_MAXIMUM_EXPERIENCE, PersistentDataType.DOUBLE, 0.0);
     }
 
-    public double getHealth(){
+    public double getHealth() {
         boolean useCustomHealth = YaRPG.getInstance().getConfig().getBoolean("settings.use_custom_health", false);
 
         if (useCustomHealth) return persistentDataContainer.getOrDefault(YNamespacedKeys.ENTITY_HEALTH, PersistentDataType.DOUBLE, 0.01);
         return entity.getHealth();
     }
 
-    public double getMinimumHealth(){
+    public double getMinimumHealth() {
         if (entity instanceof Player) return entity.getHealth();
         return persistentDataContainer.getOrDefault(YNamespacedKeys.ENTITY_MINIMUM_HEALTH, PersistentDataType.DOUBLE, 0.01);
     }
 
-    public double getMaximumHealth(){
+    public double getMaximumHealth() {
         boolean useCustomHealth = YaRPG.getInstance().getConfig().getBoolean("settings.use_custom_health", false);
 
         if (useCustomHealth) return persistentDataContainer.getOrDefault(YNamespacedKeys.ENTITY_MAXIMUM_HEALTH, PersistentDataType.DOUBLE, 0.0);
         return entity.getAttribute(Attribute.GENERIC_MAX_HEALTH).getBaseValue();
     }
 
-    public double getRegeneration(){
-        return persistentDataContainer.getOrDefault(YNamespacedKeys.ENTITY_REGENERATION, PersistentDataType.DOUBLE, 0.0);
+    public double getRegeneration() {
+        return persistentDataContainer.getOrDefault(YNamespacedKeys.ENTITY_REGENERATION, PersistentDataType.DOUBLE, 1.0);
     }
 
-    public double getProtection(){
+    public double getProtection() {
         return persistentDataContainer.getOrDefault(YNamespacedKeys.ENTITY_PROTECTION, PersistentDataType.DOUBLE, 0.0);
     }
 
-    public double getMinimumProtection(){
+    public double getMinimumProtection() {
         return persistentDataContainer.getOrDefault(YNamespacedKeys.ENTITY_MINIMUM_PROTECTION, PersistentDataType.DOUBLE, 0.0);
     }
 
-    public double getMaximumProtection(){
+    public double getMaximumProtection() {
         return persistentDataContainer.getOrDefault(YNamespacedKeys.ENTITY_MAXIMUM_PROTECTION, PersistentDataType.DOUBLE, 0.0);
     }
 
-    public double getDamage(){
+    public double getDamage() {
         return persistentDataContainer.getOrDefault(YNamespacedKeys.ENTITY_DAMAGE, PersistentDataType.DOUBLE, 0.0);
     }
 
-    public double getMinimumDamage(){
+    public double getMinimumDamage() {
         return persistentDataContainer.getOrDefault(YNamespacedKeys.ENTITY_MINIMUM_DAMAGE, PersistentDataType.DOUBLE, 0.0);
     }
 
-    public double getMaximumDamage(){
+    public double getMaximumDamage() {
         return persistentDataContainer.getOrDefault(YNamespacedKeys.ENTITY_MAXIMUM_DAMAGE, PersistentDataType.DOUBLE, 0.0);
     }
 
-    public int getAttributePoints(){
+    public int getAttributePoints() {
         return this.persistentDataContainer.getOrDefault(YNamespacedKeys.ENTITY_ATTRIBUTE_POINTS, PersistentDataType.INTEGER, 0);
     }
 
-    public int getStrength(){
+    public int getStrength() {
         return this.persistentDataContainer.getOrDefault(YNamespacedKeys.ENTITY_ATTRIBUTE_STRENGTH, PersistentDataType.INTEGER, 0);
     }
 
-    public int getIntelligence(){
+    public int getIntelligence() {
         return this.persistentDataContainer.getOrDefault(YNamespacedKeys.ENTITY_ATTRIBUTE_INTELLIGENCE, PersistentDataType.INTEGER, 0);
     }
 
-    public int getConstitution(){
+    public int getConstitution() {
         return this.persistentDataContainer.getOrDefault(YNamespacedKeys.ENTITY_ATTRIBUTE_CONSTITUTION, PersistentDataType.INTEGER, 0);
     }
 
-    public int getDexterity(){
+    public int getDexterity() {
         return this.persistentDataContainer.getOrDefault(YNamespacedKeys.ENTITY_ATTRIBUTE_DEXTERITY, PersistentDataType.INTEGER, 0);
     }
 
-    public int getCharisma(){
+    public int getCharisma() {
         return this.persistentDataContainer.getOrDefault(YNamespacedKeys.ENTITY_ATTRIBUTE_CHARISMA, PersistentDataType.INTEGER, 0);
     }
 
-    public int getWisdom(){
+    public int getWisdom() {
         return this.persistentDataContainer.getOrDefault(YNamespacedKeys.ENTITY_ATTRIBUTE_WISDOM, PersistentDataType.INTEGER, 0);
     }
 
-    public int getLuck(){
+    public int getLuck() {
         return this.persistentDataContainer.getOrDefault(YNamespacedKeys.ENTITY_ATTRIBUTE_LUCK, PersistentDataType.INTEGER, 0);
     }
 
@@ -144,7 +144,7 @@ public abstract class AbstractEntity {
         return this;
     }
 
-    public AbstractEntity setHealth(double health){
+    public AbstractEntity setHealth(double health) {
         boolean useCustomHealth = YaRPG.getInstance().getConfig().getBoolean("settings.use_custom_health", false);
 
         if (useCustomHealth) this.persistentDataContainer.set(YNamespacedKeys.ENTITY_HEALTH, PersistentDataType.DOUBLE, health);
@@ -153,66 +153,68 @@ public abstract class AbstractEntity {
         return this;
     }
 
-    public AbstractEntity setMaximumHealth(double maximumHealth){
+    public AbstractEntity setMaximumHealth(double maximumHealth) {
         boolean useCustomHealth = YaRPG.getInstance().getConfig().getBoolean("settings.use_custom_health", false);
         double entityBaseHealth = YaRPG.getInstance().getConfig().getDouble("formulas.entity.base_health", 20.0);
+
+        if (this.entity instanceof Player) entityBaseHealth = YaRPG.getInstance().getConfig().getDouble("formulas.player.base_health", 100.0);
 
         if (useCustomHealth) this.persistentDataContainer.set(YNamespacedKeys.ENTITY_MAXIMUM_HEALTH, PersistentDataType.DOUBLE, maximumHealth);
         else this.entity.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(entityBaseHealth + (maximumHealth * 2));
         return this;
     }
 
-    public AbstractEntity setRegeneration(double regeneration){
+    public AbstractEntity setRegeneration(double regeneration) {
         this.persistentDataContainer.set(YNamespacedKeys.ENTITY_REGENERATION, PersistentDataType.DOUBLE, regeneration);
         return this;
     }
 
-    public AbstractEntity setProtection(double protection){
+    public AbstractEntity setProtection(double protection) {
         this.persistentDataContainer.set(YNamespacedKeys.ENTITY_PROTECTION, PersistentDataType.DOUBLE, protection);
         return this;
     }
 
-    public AbstractEntity setAttributePoints(int attributePoints){
+    public AbstractEntity setAttributePoints(int attributePoints) {
         this.persistentDataContainer.set(YNamespacedKeys.ENTITY_ATTRIBUTE_POINTS, PersistentDataType.INTEGER, attributePoints);
         return this;
     }
 
-    public AbstractEntity setStrength(int strength){
+    public AbstractEntity setStrength(int strength) {
         this.persistentDataContainer.set(YNamespacedKeys.ENTITY_ATTRIBUTE_STRENGTH, PersistentDataType.INTEGER, strength);
         return this;
     }
 
-    public AbstractEntity setIntelligence(int intelligence){
+    public AbstractEntity setIntelligence(int intelligence) {
         this.persistentDataContainer.set(YNamespacedKeys.ENTITY_ATTRIBUTE_INTELLIGENCE, PersistentDataType.INTEGER, intelligence);
         return this;
     }
 
-    public AbstractEntity setConstitution(int constitution){
+    public AbstractEntity setConstitution(int constitution) {
         this.persistentDataContainer.set(YNamespacedKeys.ENTITY_ATTRIBUTE_CONSTITUTION, PersistentDataType.INTEGER, constitution);
         return this;
     }
 
-    public AbstractEntity setDexterity(int dexterity){
+    public AbstractEntity setDexterity(int dexterity) {
         this.persistentDataContainer.set(YNamespacedKeys.ENTITY_ATTRIBUTE_DEXTERITY, PersistentDataType.INTEGER, dexterity);
         return this;
     }
 
-    public AbstractEntity setCharisma(int charisma){
+    public AbstractEntity setCharisma(int charisma) {
         this.persistentDataContainer.set(YNamespacedKeys.ENTITY_ATTRIBUTE_CHARISMA, PersistentDataType.INTEGER, charisma);
         return this;
     }
 
-    public AbstractEntity setWisdom(int wisdom){
+    public AbstractEntity setWisdom(int wisdom) {
         this.persistentDataContainer.set(YNamespacedKeys.ENTITY_ATTRIBUTE_WISDOM, PersistentDataType.INTEGER, wisdom);
         return this;
     }
 
-    public AbstractEntity setLuck(int luck){
+    public AbstractEntity setLuck(int luck) {
         this.persistentDataContainer.set(YNamespacedKeys.ENTITY_ATTRIBUTE_LUCK, PersistentDataType.INTEGER, luck);
         return this;
     }
 
-    public void takeDamage(double damage){
+    public void takeDamage(double damage) {
         boolean useCustomHealth = YaRPG.getInstance().getConfig().getBoolean("settings.use_custom_health", false);
 
         if (useCustomHealth) {
@@ -228,14 +230,12 @@ public abstract class AbstractEntity {
         entity.damage(damage);
     }
 
-    public void updateHealth(){
+    public void updateHealth() {
         boolean useCustomHealth = YaRPG.getInstance().getConfig().getBoolean("settings.use_custom_health", false);
 
-        double health = entity.getHealth();
-        double maxHealth = entity.getAttribute(Attribute.GENERIC_MAX_HEALTH).getBaseValue();
+        double health = getHealth();
+        double maxHealth = getMaximumHealth();
         if (useCustomHealth) {
-            health = getHealth();
-            maxHealth = getMaximumHealth();
             if (health > maxHealth) {
                 health = maxHealth;
             }
@@ -244,7 +244,13 @@ public abstract class AbstractEntity {
             }
         }
 
-        entity.setHealth(Math.abs(health / maxHealth) * 20);
+        setHealth(Math.abs(health / maxHealth) * 20);
+    }
+
+    public void heal(double healValue) {
+        double health = getHealth();
+        double maxHealth = getMaximumHealth();
+        setHealth(Math.min(health + healValue, maxHealth));
     }
 
 }

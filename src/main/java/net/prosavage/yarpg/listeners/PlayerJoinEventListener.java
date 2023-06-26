@@ -3,6 +3,7 @@ package net.prosavage.yarpg.listeners;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.prosavage.yarpg.YaRPG;
+import net.prosavage.yarpg.api.entities.YPlayer;
 import net.prosavage.yarpg.utilities.Color;
 import net.prosavage.yarpg.utilities.Placeholders;
 import org.bukkit.entity.Player;
@@ -14,8 +15,14 @@ import org.bukkit.scheduler.BukkitRunnable;
 public class PlayerJoinEventListener implements Listener {
 
     @EventHandler
-    public void PlayerJoinListener(PlayerJoinEvent event) {
+    public void onPlayerJoinListener(PlayerJoinEvent event) {
         Player player = event.getPlayer();
+
+        player.setHealthScale(20);
+        player.setHealthScaled(true);
+
+        YPlayer yPlayer = new YPlayer(player);
+        yPlayer.setDefaultData();
 
         new BukkitRunnable() {
             @Override
@@ -27,6 +34,21 @@ public class PlayerJoinEventListener implements Listener {
             }
 
         }.runTaskTimer(YaRPG.getInstance(), 1L, 5L);
+
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                double regeneration = yPlayer.getRegeneration();
+                double health = yPlayer.getHealth();
+                double maximumHealth = yPlayer.getMaximumHealth();
+
+                if (!yPlayer.isCombatTagged()) {
+                    if (health + regeneration < maximumHealth) yPlayer.setHealth(yPlayer.getHealth() + yPlayer.getRegeneration());
+                    else yPlayer.setHealth(yPlayer.getMaximumHealth());
+                }
+            }
+
+        }.runTaskTimer(YaRPG.getInstance(), 1L, 10L);
 
     }
 
