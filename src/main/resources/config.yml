@@ -42,6 +42,15 @@ formulas:
   player:
     base_health: '100.0'
     maximum_experience: '({player_level} * 250)^1.25'
+    base_regeneration: 1
+    base_protection: 0
+    base_strength: 1
+    base_intelligence: 1
+    base_constitution: 1
+    base_dexterity: 1
+    base_charisma: 1
+    base_wisdom: 1
+    base_luck: 1
   entity:
     base_health: '20.0'
 

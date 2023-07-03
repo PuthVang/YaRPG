@@ -60,7 +60,6 @@ public final class YNamespacedKeys {
 
     // PLAYER & ENTITIES
 
-    public static final NamespacedKey ENTITY_CHARACTER_NUMBER = create("entity_character_number");
     public static final NamespacedKey ENTITY_CLASS = create("entity_class");
     public static final NamespacedKey ENTITY_NAME = create("entity_name");
     public static final NamespacedKey ENTITY_LEVEL = create("entity_level");
@@ -122,6 +121,25 @@ public final class YNamespacedKeys {
             new BooleanTagType(), new UUIDTagType()
     };
 
+    public static final NamespacedKey[] ALL_ENTITY_NAME_SPACED_KEYS = {
+
+            YNamespacedKeys.ENTITY_CLASS, YNamespacedKeys.ENTITY_NAME, YNamespacedKeys.ENTITY_LEVEL,
+            YNamespacedKeys.ENTITY_EXPERIENCE, YNamespacedKeys.ENTITY_MINIMUM_EXPERIENCE,
+            YNamespacedKeys.ENTITY_MAXIMUM_EXPERIENCE, YNamespacedKeys.ENTITY_HEALTH,
+            YNamespacedKeys.ENTITY_MINIMUM_HEALTH, YNamespacedKeys.ENTITY_MAXIMUM_HEALTH,
+            YNamespacedKeys.ENTITY_YARPG_DROPS, YNamespacedKeys.ENTITY_YARPG_DROPS_CHANCES,
+            YNamespacedKeys.ENTITY_PROTECTION, YNamespacedKeys.ENTITY_MINIMUM_PROTECTION,
+            YNamespacedKeys.ENTITY_MAXIMUM_PROTECTION, YNamespacedKeys.ENTITY_REGENERATION,
+            YNamespacedKeys.ENTITY_DAMAGE, YNamespacedKeys.ENTITY_MINIMUM_DAMAGE,
+            YNamespacedKeys.ENTITY_MAXIMUM_DAMAGE, YNamespacedKeys.ENTITY_COMBAT_TAGGED,
+            YNamespacedKeys.ENTITY_COMBAT_TAG_TIME, YNamespacedKeys.ENTITY_LOGGED_OUT_IN_COMBAT,
+            YNamespacedKeys.ENTITY_ATTRIBUTE_POINTS, YNamespacedKeys.ENTITY_ATTRIBUTE_STRENGTH,
+            YNamespacedKeys.ENTITY_ATTRIBUTE_INTELLIGENCE, YNamespacedKeys.ENTITY_ATTRIBUTE_CONSTITUTION,
+            YNamespacedKeys.ENTITY_ATTRIBUTE_DEXTERITY, YNamespacedKeys.ENTITY_ATTRIBUTE_CHARISMA,
+            YNamespacedKeys.ENTITY_ATTRIBUTE_WISDOM, YNamespacedKeys.ENTITY_ATTRIBUTE_LUCK
+
+    };
+
     private YNamespacedKeys() { }
 
     private static NamespacedKey create(String path) {
@@ -134,6 +152,10 @@ public final class YNamespacedKeys {
 
     public static PersistentDataType[] getAllItemDataType() {
         return ALL_ITEM_DATA_TYPE;
+    }
+
+    public static NamespacedKey[] getAllEntityNameSpacedKeys() {
+        return ALL_ENTITY_NAME_SPACED_KEYS;
     }
 
 }

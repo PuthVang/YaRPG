@@ -156,12 +156,9 @@ public abstract class AbstractEntity {
 
     public AbstractEntity setMaximumHealth(double maximumHealth) {
         boolean useCustomHealth = YaRPG.getInstance().getConfig().getBoolean("settings.use_custom_health", false);
-        double entityBaseHealth = YaRPG.getInstance().getConfig().getDouble("formulas.entity.base_health", 20.0);
-
-        if (this.entity instanceof Player) entityBaseHealth = YaRPG.getInstance().getConfig().getDouble("formulas.player.base_health", 100.0);
 
         if (useCustomHealth) this.persistentDataContainer.set(YNamespacedKeys.ENTITY_MAXIMUM_HEALTH, PersistentDataType.DOUBLE, maximumHealth);
-        else this.entity.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(entityBaseHealth + (maximumHealth * 2));
+        else this.entity.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(maximumHealth);
         return this;
     }
 
@@ -216,10 +213,14 @@ public abstract class AbstractEntity {
     }
 
     public void deleteData() {
-        NamespacedKey[] namespacedKeys = YNamespacedKeys.getAllItemNamespacedKeys();
+        NamespacedKey[] namespacedKeys = YNamespacedKeys.getAllEntityNameSpacedKeys();
         for (NamespacedKey key : namespacedKeys) {
             persistentDataContainer.remove(key);
         }
+        double entityBaseHealth = YaRPG.getInstance().getConfig().getDouble("formulas.entity.base_health", 20.0);
+
+        if (this.entity instanceof Player) entityBaseHealth = YaRPG.getInstance().getConfig().getDouble("formulas.player.base_health", 100.0);
+        this.entity.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(entityBaseHealth);
     }
 
     public void takeDamage(double damage) {

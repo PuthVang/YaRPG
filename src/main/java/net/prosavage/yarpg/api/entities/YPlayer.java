@@ -28,12 +28,48 @@ public class YPlayer extends AbstractEntity {
     }
 
     public String getPlayerClass() {
-        String defaultClass = YaRPG.getInstance().getConfig().getString("player.default_class");
+        String defaultClass = YaRPG.getInstance().getConfig().getString("player.default_class", "Unspecialized");
         return persistentDataContainer.getOrDefault(YNamespacedKeys.ENTITY_CLASS, PersistentDataType.STRING, defaultClass);
     }
 
-    public double getBaseHealth(){
-        return new Equation(YaRPG.getInstance().getConfig().getString("formulas.player.base_health")).getDouble();
+    public double getBaseHealth() {
+        return new Equation(YaRPG.getInstance().getConfig().getString("formulas.player.base_health", "100")).getDouble();
+    }
+
+    public double getBaseRegeneration() {
+        return new Equation(YaRPG.getInstance().getConfig().getString("formulas.player.base_regeneration", "1")).getDouble();
+    }
+
+    public double getBaseProtection() {
+        return new Equation(YaRPG.getInstance().getConfig().getString("formulas.player.base_protection", "0")).getDouble();
+    }
+
+    public int getBaseStrength() {
+        return new Equation(YaRPG.getInstance().getConfig().getString("formulas.player.base_strength", "0")).getInteger();
+    }
+
+    public int getBaseIntelligence() {
+        return new Equation(YaRPG.getInstance().getConfig().getString("formulas.player.base_intelligence", "0")).getInteger();
+    }
+
+    public int getBaseConstitution() {
+        return new Equation(YaRPG.getInstance().getConfig().getString("formulas.player.base_constitution", "0")).getInteger();
+    }
+
+    public int getBaseDexterity() {
+        return new Equation(YaRPG.getInstance().getConfig().getString("formulas.player.base_dexterity", "0")).getInteger();
+    }
+
+    public int getBaseCharisma() {
+        return new Equation(YaRPG.getInstance().getConfig().getString("formulas.player.base_charisma", "0")).getInteger();
+    }
+
+    public int getBaseWisdom() {
+        return new Equation(YaRPG.getInstance().getConfig().getString("formulas.player.base_wisdom", "0")).getInteger();
+    }
+
+    public int getBaseLuck() {
+        return new Equation(YaRPG.getInstance().getConfig().getString("formulas.player.base_luck", "0")).getInteger();
     }
 
     public long getCombatTagTime(){
@@ -106,10 +142,10 @@ public class YPlayer extends AbstractEntity {
 
         setPlayerClass(getPlayerClass());
         setLevel(getLevel());
-        setExperience(getExperience());
         setMaximumExperience(getMaximumExperience());
-        setHealth(getHealth());
-        setMaximumHealth(getMaximumHealth());
+        setExperience(getExperience());
+        setMaximumHealth(getBaseHealth());
+        setHealth(getBaseHealth());
     }
 
 }
