@@ -1,7 +1,9 @@
 package net.prosavage.yarpg;
 
 import co.aikar.commands.PaperCommandManager;
+import com.jeff_media.armorequipevent.ArmorEquipEvent;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
+import net.prosavage.yarpg.listeners.PlayerArmorEquipEventListener;
 import net.prosavage.yarpg.listeners.PlayerDamageEventListener;
 import net.prosavage.yarpg.listeners.PlayerJoinEventListener;
 import net.prosavage.yarpg.listeners.PlayerQuitEventListener;
@@ -40,10 +42,12 @@ public final class YaRPG extends JavaPlugin {
         result = BukkitAudiences.create(this);
         combatTagManager = new CombatTagManager(this);
 
+        ArmorEquipEvent.registerListener(this);
         getServer().getPluginManager().registerEvents(new PlayerJoinEventListener(), this);
         getServer().getPluginManager().registerEvents(new PlayerQuitEventListener(), this);
         getServer().getPluginManager().registerEvents(new PlayerRegenEventListener(), this);
         getServer().getPluginManager().registerEvents(new PlayerDamageEventListener(), this);
+        getServer().getPluginManager().registerEvents(new PlayerArmorEquipEventListener(), this);
 
         CompletionManager.loadAll();
         CommandManager.loadAll();

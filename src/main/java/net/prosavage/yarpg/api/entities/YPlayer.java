@@ -2,11 +2,14 @@ package net.prosavage.yarpg.api.entities;
 
 import net.prosavage.yarpg.YaRPG;
 import net.prosavage.yarpg.api.entities.utilities.AbstractEntity;
+import net.prosavage.yarpg.api.itemstacks.Armor;
 import net.prosavage.yarpg.utilities.Equation;
 import net.prosavage.yarpg.utilities.Placeholders;
 import net.prosavage.yarpg.utilities.keys.YNamespacedKeys;
 import net.prosavage.yarpg.utilities.tagtypes.BooleanTagType;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 
 public class YPlayer extends AbstractEntity {
@@ -146,6 +149,42 @@ public class YPlayer extends AbstractEntity {
         setExperience(getExperience());
         setMaximumHealth(getBaseHealth());
         setHealth(getBaseHealth());
+    }
+
+    public void calculateArmorAttributesAndApply() {
+
+        ItemStack helmet = player.getInventory().getHelmet() != null ? player.getInventory().getHelmet() : new ItemStack(Material.STONE);
+        ItemStack chestplate = player.getInventory().getChestplate() != null ? player.getInventory().getChestplate() : new ItemStack(Material.STONE);
+        ItemStack leggings = player.getInventory().getLeggings() != null ? player.getInventory().getLeggings() : new ItemStack(Material.STONE);
+        ItemStack boots = player.getInventory().getBoots() != null ? player.getInventory().getBoots() : new ItemStack(Material.STONE);
+
+        Armor helmetArmor = new Armor(helmet);
+        Armor chestplateArmor = new Armor(chestplate);
+        Armor leggingsArmor = new Armor(leggings);
+        Armor bootsArmor = new Armor(boots);
+
+        int health = (int) (helmetArmor.getHealth() + chestplateArmor.getHealth() + leggingsArmor.getHealth() + bootsArmor.getHealth());
+        double regeneration = helmetArmor.getRegeneration() + chestplateArmor.getRegeneration() + leggingsArmor.getRegeneration() + bootsArmor.getRegeneration();
+        double protection = helmetArmor.getProtection() + chestplateArmor.getProtection() + leggingsArmor.getProtection() + bootsArmor.getProtection();
+        int strength = helmetArmor.getStrength() + chestplateArmor.getStrength() + leggingsArmor.getStrength() + bootsArmor.getStrength();
+        int intelligence = helmetArmor.getIntelligence() + chestplateArmor.getIntelligence() + leggingsArmor.getIntelligence() + bootsArmor.getIntelligence();
+        int constitution = helmetArmor.getConstitution() + chestplateArmor.getConstitution() + leggingsArmor.getConstitution() + bootsArmor.getConstitution();
+        int dexterity = helmetArmor.getDexterity() + chestplateArmor.getDexterity() + leggingsArmor.getDexterity() + bootsArmor.getDexterity();
+        int charisma = helmetArmor.getCharisma() + chestplateArmor.getCharisma() + leggingsArmor.getCharisma() + bootsArmor.getCharisma();
+        int wisdom = helmetArmor.getWisdom() + chestplateArmor.getWisdom() + leggingsArmor.getWisdom() + bootsArmor.getWisdom();
+        int luck = helmetArmor.getLuck() + chestplateArmor.getLuck() + leggingsArmor.getLuck() + bootsArmor.getLuck();
+
+        setMaximumHealth(getBaseHealth() + health);
+        setRegeneration(getBaseRegeneration() + regeneration);
+        setProtection(getBaseProtection() + protection);
+        setStrength(getBaseStrength() + strength);
+        setIntelligence(getBaseIntelligence() + intelligence);
+        setConstitution(getBaseConstitution() + constitution);
+        setDexterity(getBaseDexterity() + dexterity);
+        setCharisma(getBaseCharisma() + charisma);
+        setWisdom(getBaseWisdom() + wisdom);
+        setLuck(getBaseLuck() + luck);
+
     }
 
 }
